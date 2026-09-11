@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TLGXHGZW');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>How It Works — Vesper.ai / GetYourSoft</title>
+
+  <!-- Force black immediately (Anti-Flash) -->
+  <style>
+    html, body { background: #000000 !important; color: #ffffff; }
+  </style>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Explore the deep 4-tier neural execution loop of Vesper.ai and ANSH AI: Perception, Intent Planning, Native OS Dispatch, and Self-Healing Verification.">
+  <meta name="keywords" content="Vesper.ai architecture, ANSH AI how it works, neural action loop, system design, autonomous AI desktop assistant, Anshu Dubey">
+  <meta name="author" content="Anshu Dubey">
+  <link rel="canonical" href="https://getyoursoft.page.gd/how-it-works.html">
+
+  <!-- Favicon (Exact Vesper Data URI) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cg transform='rotate(-30 12 12)'%3E%3Ccircle cx='7.3' cy='3.2' r='1.45'/%3E%3Crect x='5.5' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Crect x='14.9' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Ccircle cx='16.7' cy='20.8' r='1.45'/%3E%3C/g%3E%3C/svg%3E">
+
+  <!-- Google Fonts: Inter variable + Instrument Serif italic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FR643S6NGM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FR643S6NGM');
+  </script>
+
+  <style>
+    .architecture-hero {
+      text-align: center;
+      padding: 80px 24px 30px;
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    .step-number {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .step-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .step-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body style="background:#000;color:#fff">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TLGXHGZW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Grain Overlay -->
+  <div class="grain"></div>
+
+  <!-- Main Viewport Page Container -->
+  <div class="page" style="min-height:100vh; display:flex; flex-direction:column;">
+    <div class="menu-backdrop" id="menu-backdrop"></div>
+
+    <!-- Header — 3-Column Grid -->
+    <header class="header">
+      
+      <!-- Left: Logo -->
+      <a href="index.html" class="logo" aria-label="Vesper.ai">
+        <svg class="logo-mark-svg" viewBox="0 0 24 24">
+          <g transform="rotate(-30 12 12)">
+            <circle cx="7.3" cy="3.2" r="1.45"/>
+            <rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+            <rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+            <circle cx="16.7" cy="20.8" r="1.45"/>
+          </g>
+        </svg>
+        <span>Vesper<span class="logo-suffix">.ai</span></span>
+      </a>
+
+      <!-- Center: Liquid-Metal Nav Pills -->
+      <nav id="site-nav" aria-label="Primary">
+        <a href="benefits.html" class="nav-pill">Benefits</a>
+        <a href="how-it-works.html" class="nav-pill active">How It Works</a>
+        <a href="pricing.html" class="nav-pill">Pricing</a>
+        <a href="docs.html" class="nav-pill">Docs</a>
+        <a href="signin.html" class="nav-pill">Account</a>
+      </nav>
+
+      <!-- Right: Header CTA + Burger Button -->
+      <div style="display:flex; align-items:center; gap:10px; justify-self:end;">
+        <a href="pricing.html" class="btn btn-solid header-cta">
+          Start for Free
+        </a>
+
+        <button type="button" class="burger-btn" id="burger-btn" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+        </button>
+      </div>
+
+    </header>
+
+    <!-- Main Content Area -->
+    <main style="flex:1;">
+      
+      <section class="architecture-hero">
+        <div class="badge">
+          <svg class="badge-star" viewBox="0 0 24 24">
+            <path d="M12 2.6C12.55 2.6 12.88 3.15 13.08 4.7c.62 4.7 1.52 5.6 6.22 6.22 1.55.2 2.1.53 2.1 1.08s-.55.88-2.1 1.08c-4.7.62-5.6 1.52-6.22 6.22-.2 1.55-.53 2.1-1.08 2.1s-.88-.55-1.08-2.1c-.62-4.7-1.52-5.6-6.22-6.22C3.15 12.88 2.6 12.55 2.6 12s.55-.88 2.1-1.08c4.7-.62 5.6-1.52 6.22-6.22C11.12 3.15 11.45 2.6 12 2.6Z"/>
+          </svg>
+          <span>System Design & Architecture</span>
+        </div>
+
+        <h1 style="font-size: clamp(32px, 5vw, 50px); margin-bottom: 16px;">
+          The 4-tier <em>neural execution loop</em>.
+        </h1>
+        <p class="lede" style="max-width:640px; margin:0 auto;">
+          From high-level conversational intent to native OS event dispatch in under 120 milliseconds. Discover the underlying technology powering Vesper and ANSH AI.
+        </p>
+      </section>
+
+      <!-- 4-Tier Pipeline Grid -->
+      <section class="container" style="margin-bottom:60px;">
+        <div class="grid-2">
+          
+          <div class="card step-card">
+            <div class="step-number">Tier 01 &bull; Ingestion</div>
+            <h3>Neural Screen & Audio Perception</h3>
+            <p>Captures active screen buffers via non-blocking hardware hooks, mapping coordinate matrices, bounding boxes, text nodes, and clickable icons using multimodal spatial models.</p>
+          </div>
+
+          <div class="card step-card">
+            <div class="step-number">Tier 02 &bull; Reasoning</div>
+            <h3>Atomic Path Decomposition</h3>
+            <p>Breaks high-level requests into atomic sub-actions (click, drag, type, run shell, read clipboard). Evaluates dependency trees and plans fallback trajectories.</p>
+          </div>
+
+          <div class="card step-card">
+            <div class="step-number">Tier 03 &bull; Execution</div>
+            <h3>Sub-Millisecond OS Dispatch</h3>
+            <p>Executes planned actions using native Win32 API calls and PyAutoGUI, guaranteeing microsecond latency and flawless human-parity keyboard/mouse interactions.</p>
+          </div>
+
+          <div class="card step-card">
+            <div class="step-number">Tier 04 &bull; Verification</div>
+            <h3>Closed-Loop Safety & Rollback</h3>
+            <p>Every autonomous action is visually audited against expected outcome. If an anomalous state or error is detected, the Shadow Rollback engine restores the previous file state instantly.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Interactive Execution Diagram -->
+      <section class="container" style="margin-bottom:80px;">
+        <div class="card" style="padding:32px;">
+          <h3 style="font-size:20px; font-weight:600; margin-bottom:14px;">Loop Lifecycle Diagram</h3>
+          <div class="code-block">
+[Voice / Text Command Ingested]
+       │
+       ▼
+[Biometric Voice Shield Authenticates Acoustic Centroid]
+       │
+       ▼
+[Screen Peeler Captures Normalized Coordinate Matrices [ymin, xmin, ymax, xmax]]
+       │
+       ▼
+[Dual-Model System 2 Engine Synthesizes Atomic OS Action Sequence]
+       │
+       ▼
+[Shadow Rollback Sandbox Snapshots Affected Local Files]
+       │
+       ▼
+[Win32 API Dispatches Mouse / Keyboard / Terminal Events]
+       │
+       ▼
+[Visual Confirmation Pass Confirms Expected Result &bull; Done!]
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Complex Site Footer -->
+    <footer class="site-footer-complex">
+      <div class="footer-top-grid">
+        
+        <!-- Brand / Identity -->
+        <div class="footer-brand-col">
+          <h4>
+            <svg class="logo-mark-svg" viewBox="0 0 24 24" style="width:20px; height:20px;">
+              <g transform="rotate(-30 12 12)">
+                <circle cx="7.3" cy="3.2" r="1.45"/>
+                <rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+                <rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+                <circle cx="16.7" cy="20.8" r="1.45"/>
+              </g>
+            </svg>
+            Vesper.ai / GetYourSoft
+          </h4>
+          <p class="footer-brand-desc">
+            Next-generation autonomous operational AI infrastructure and desktop intelligence. Engineered by <strong>Anshu Dubey</strong> in <strong>Barnahal, India</strong>.
+          </p>
+          <div style="font-size:13px; color:var(--muted);">
+            Flagship Product: <strong>ANSH AI (v2.5.0)</strong>
+          </div>
+        </div>
+
+        <!-- Col 1: Platform -->
+        <div class="footer-links-col">
+          <h5>Platform</h5>
+          <ul class="footer-nav-list">
+            <li><a href="pricing.html">Pricing & Plans</a></li>
+            <li><a href="checkout.html">FamPay UPI Checkout</a></li>
+            <li><a href="signin.html">Dashboard & Auth</a></li>
+            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="admin.html">Admin Console</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Architecture -->
+        <div class="footer-links-col">
+          <h5>Architecture</h5>
+          <ul class="footer-nav-list">
+            <li><a href="docs.html#quickstart">Zero-Dep Voice Engine</a></li>
+            <li><a href="docs.html#control">Screen Peeler Vision</a></li>
+            <li><a href="docs.html#safety">Shadow Rollback Engine</a></li>
+            <li><a href="docs.html#enrollment">Biometric Voice Shield</a></li>
+            <li><a href="docs.html#troubleshooting">Troubleshooting FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Legal & Trust -->
+        <div class="footer-links-col">
+          <h5>Legal & Security</h5>
+          <ul class="footer-nav-list">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions (EULA)</a></li>
+            <li><a href="refund.html">Refund & Cancellation</a></li>
+            <li><a href="https://github.com/anshu-dubey/ansh-ai" target="_blank">GitHub Repository</a></li>
+            <li><a href="mailto:support@getyoursoft.page.gd">Support Contact</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          © 2026 Vesper.ai &bull; GetYourSoft. All rights reserved. Architected by <strong>Anshu Dubey</strong>.
+        </div>
+        <div>
+          Domain: <code>getyoursoft.page.gd</code> &bull; Built in Barnahal, India.
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    (function () {
+      'use strict';
+      var burgerBtn = document.getElementById('burger-btn');
+      var backdrop = document.getElementById('menu-backdrop');
+      var body = document.body;
+
+      function toggleMenu() {
+        var isOpen = body.classList.toggle('menu-open');
+        if (burgerBtn) {
+          burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          burgerBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        }
+      }
+
+      function closeMenu() {
+        if (body.classList.contains('menu-open')) {
+          body.classList.remove('menu-open');
+          if (burgerBtn) {
+            burgerBtn.setAttribute('aria-expanded', 'false');
+            burgerBtn.setAttribute('aria-label', 'Open menu');
+          }
+        }
+      }
+
+      if (burgerBtn) burgerBtn.addEventListener('click', toggleMenu);
+      if (backdrop) backdrop.addEventListener('click', closeMenu);
+
+      var navLinks = document.querySelectorAll('#site-nav a');
+      navLinks.forEach(function (link) { link.addEventListener('click', closeMenu); });
+
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' || e.keyCode === 27) closeMenu();
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 901) closeMenu();
+      });
+    })();
+  </script>
+
+</body>
+</html>
