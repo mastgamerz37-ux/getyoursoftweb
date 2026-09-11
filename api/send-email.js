@@ -29,7 +29,7 @@ module.exports = async function handler(req, res) {
     }
     const resend = new Resend(apiKey);
     const fromAddress = process.env.RESEND_FROM_EMAIL || 'ANSH AI <onboarding@resend.dev>';
-    const downloadUrl = process.env.DOWNLOAD_URL || 'https://github.com/anshu-dubey/ansh-ai/releases/latest/download/AnshAI-Setup-v2.5.0.exe';
+    const downloadUrl = process.env.DOWNLOAD_URL || 'https://github.com/anshu-dubey/ansh-ai/releases/latest/download/AnshAI-Setup-v1.0.0.exe';
 
     const htmlContent = `
 <!DOCTYPE html>
@@ -71,7 +71,7 @@ module.exports = async function handler(req, res) {
       <h3>🚀 3-Step Quick Activation Guide:</h3>
       <div class="step-item">
         <div class="step-num">1</div>
-        <div>Download and run the installer (<code>AnshAI-Setup-v2.5.0.exe</code>) on Windows 10 or 11 (64-bit).</div>
+        <div>Download and run the installer (<code>AnshAI-Setup-v1.0.0.exe</code>) on Windows 10 or 11 (64-bit).</div>
       </div>
       <div class="step-item">
         <div class="step-num">2</div>
@@ -83,7 +83,7 @@ module.exports = async function handler(req, res) {
       </div>
     </div>
 
-    <p style="font-size: 13px;">If you ever need support or have questions, reach out to founder <strong>Anshu Dubey</strong> directly at <a href="mailto:support@getyoursoft.page.gd" style="color: #38bdf8;">support@getyoursoft.page.gd</a>.</p>
+    <p style="font-size: 13px;">If you ever need support or have questions, reach out to founder <strong>Anshu Dubey</strong> directly at <a href="mailto:mastgamerz37@gmail.com" style="color: #38bdf8;">mastgamerz37@gmail.com</a>.</p>
 
     <div class="footer">
       GetYourSoft &bull; Built by Anshu Dubey, Barnahal, India<br>
