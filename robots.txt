@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /pricing.html
+Allow: /checkout.html
+Allow: /signin.html
+Allow: /docs.html
+Allow: /privacy.html
+Allow: /terms.html
+Allow: /refund.html
+Disallow: /admin.html
+Disallow: /api/
+
+Sitemap: https://getyoursoft.page.gd/sitemap.xml
