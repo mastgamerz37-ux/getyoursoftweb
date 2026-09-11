@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TLGXHGZW');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Documentation & Operator Manual — Vesper.ai / GetYourSoft</title>
+
+  <!-- Force black immediately (Anti-Flash) -->
+  <style>
+    html, body { background: #000000 !important; color: #ffffff; }
+  </style>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Comprehensive technical documentation and user manual for Vesper.ai and ANSH AI (v2.5.0). Learn installation, voice biometrics, desktop automation, and safety rollback.">
+  <meta name="keywords" content="Vesper.ai docs, ANSH AI documentation, Anshu Dubey user manual, autonomous AI assistant guide, zero-dependency voice engine, Windows AI assistant setup">
+  <meta name="author" content="Anshu Dubey">
+  <link rel="canonical" href="https://getyoursoft.page.gd/docs.html">
+
+  <!-- Favicon (Exact Vesper Data URI) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cg transform='rotate(-30 12 12)'%3E%3Ccircle cx='7.3' cy='3.2' r='1.45'/%3E%3Crect x='5.5' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Crect x='14.9' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Ccircle cx='16.7' cy='20.8' r='1.45'/%3E%3C/g%3E%3C/svg%3E">
+
+  <!-- Google Fonts: Inter variable + Instrument Serif italic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FR643S6NGM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FR643S6NGM');
+  </script>
+
+  <style>
+    .docs-layout-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+      max-width: 1240px;
+      margin: 40px auto 80px;
+      padding: 0 24px;
+      align-items: start;
+    }
+
+    .docs-sidebar {
+      position: sticky;
+      top: 100px;
+      background: rgba(14, 14, 14, 0.7);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 20px 16px;
+      backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+    }
+
+    .docs-nav-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 13.5px;
+      color: var(--muted);
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+
+    .docs-nav-item:hover, .docs-nav-item.active {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .docs-nav-item.active {
+      font-weight: 600;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .docs-content {
+      min-width: 0;
+    }
+
+    .docs-chapter {
+      background: linear-gradient(180deg, rgba(18, 18, 18, 0.7) 0%, rgba(10, 10, 10, 0.8) 100%);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 32px;
+      backdrop-filter: blur(16px);
+      scroll-margin-top: 100px;
+    }
+
+    .docs-chapter h2 {
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-soft);
+      color: #ffffff;
+    }
+
+    .docs-chapter p {
+      color: var(--text-secondary);
+      font-size: 14.5px;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .docs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin: 20px 0;
+    }
+
+    .docs-table th, .docs-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-soft);
+      text-align: left;
+    }
+
+    .docs-table th {
+      color: var(--muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 11.5px;
+      letter-spacing: 0.06em;
+    }
+
+    .docs-accordion-item {
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      background: rgba(14, 14, 14, 0.6);
+      overflow: hidden;
+    }
+
+    .docs-accordion-header {
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-size: 14.5px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .docs-accordion-body {
+      padding: 0 20px 16px;
+      display: none;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .docs-accordion-item.active .docs-accordion-body {
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .docs-layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .docs-sidebar {
+        position: static;
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body style="background:#000;color:#fff">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TLGXHGZW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Grain Overlay -->
+  <div class="grain"></div>
+
+  <!-- Main Viewport Page Container -->
+  <div class="page" style="min-height:100vh; display:flex; flex-direction:column;">
+    <div class="menu-backdrop" id="menu-backdrop"></div>
+
+    <!-- Header — 3-Column Grid -->
+    <header class="header">
+      
+      <!-- Left: Logo -->
+      <a href="index.html" class="logo" aria-label="Vesper.ai">
+        <svg class="logo-mark-svg" viewBox="0 0 24 24">
+          <g transform="rotate(-30 12 12)">
+            <circle cx="7.3" cy="3.2" r="1.45"/>
+            <rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+            <rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+            <circle cx="16.7" cy="20.8" r="1.45"/>
+          </g>
+        </svg>
+        <span>Vesper<span class="logo-suffix">.ai</span></span>
+      </a>
+
+      <!-- Center: Liquid-Metal Nav Pills -->
+      <nav id="site-nav" aria-label="Primary">
+        <a href="index.html#benefits" class="nav-pill">Benefits</a>
+        <a href="index.html#how-it-works" class="nav-pill">How It Works</a>
+        <a href="pricing.html" class="nav-pill">Pricing</a>
+        <a href="docs.html" class="nav-pill active">Docs</a>
+        <a href="signin.html" class="nav-pill">Account</a>
+      </nav>
+
+      <!-- Right: Header CTA + Burger Button -->
+      <div style="display:flex; align-items:center; gap:10px; justify-self:end;">
+        <a href="checkout.html" class="btn btn-solid header-cta">
+          Get Product Key
+        </a>
+
+        <button type="button" class="burger-btn" id="burger-btn" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+        </button>
+      </div>
+
+    </header>
+
+    <!-- Main Content Area -->
+    <main style="flex:1;">
+      
+      <div class="docs-layout-grid">
+        
+        <!-- Sticky Sidebar Navigation -->
+        <aside class="docs-sidebar">
+          <div style="margin-bottom:12px; padding:0 6px;">
+            <input type="text" id="docs-search-input" class="form-input" style="height:38px; font-size:13px;" placeholder="Search documentation...">
+          </div>
+
+          <a href="#quickstart" class="docs-nav-item active">1. Quick Start</a>
+          <a href="#enrollment" class="docs-nav-item">2. Voice Biometrics</a>
+          <a href="#commands" class="docs-nav-item">3. Commands & Modes</a>
+          <a href="#control" class="docs-nav-item">4. Desktop Vision & Control</a>
+          <a href="#coding" class="docs-nav-item">5. Coding Workflows</a>
+          <a href="#safety" class="docs-nav-item">6. Shadow Rollback Engine</a>
+          <a href="#hud" class="docs-nav-item">7. Smart Island HUD</a>
+          <a href="#memory" class="docs-nav-item">8. Workflow Demonstration</a>
+          <a href="#study" class="docs-nav-item">9. Study Intelligence</a>
+          <a href="#activation" class="docs-nav-item">10. Commercial Activation</a>
+          <a href="#troubleshooting" class="docs-nav-item">11. Troubleshooting & FAQ</a>
+        </aside>
+
+        <!-- Documentation Content -->
+        <div class="docs-content">
+          
+          <!-- CHAPTER 1: QUICK START -->
+          <section class="docs-chapter" id="quickstart">
+            <h2>1. Quick Start Guide</h2>
+            <p>
+              Welcome to the official technical manual for <strong>Vesper.ai / ANSH AI</strong> (v2.5.0), engineered by <strong>Anshu Dubey</strong> in Barnahal, India.
+            </p>
+            <p><strong>System Requirements:</strong></p>
+            <ul style="margin-left:20px; color:var(--text-secondary); margin-bottom:20px; line-height:1.7;">
+              <li>Operating System: Windows 10 or Windows 11 (64-bit x86/ARM64)</li>
+              <li>Audio Input/Output: Standard USB/3.5mm microphone + headphones/speakers</li>
+              <li>RAM: 4GB minimum (8GB recommended for concurrent sub-agents)</li>
+              <li>Storage: 250MB free disk space for local models and binaries</li>
+            </ul>
+
+            <p><strong>Option A: Windows Standalone Setup (.exe)</strong></p>
+            <p>Download and run <code>AnshAI-Setup-v2.5.0.exe</code>. The signed installer configures native audio hooks, registers hotkeys, and places an executable shortcut on your Desktop.</p>
+
+            <p><strong>Option B: Developer Python Setup (BYOK)</strong></p>
+            <p>Clone the repository directly and inject your free API keys:</p>
+
+            <div class="code-block">
+# 1. Clone repository
+git clone https://github.com/anshu-dubey/ansh-ai.git
+cd ansh-ai
+
+# 2. Configure keys in config/api_keys.json
+{
+  "GEMINI_API_KEY": "AIzaSy...",
+  "GROQ_API_KEY": "gsk_..."
+}
+
+# 3. Launch the engine
+python main.py
+            </div>
+          </section>
+
+          <!-- CHAPTER 2: VOICE ENROLLMENT -->
+          <section class="docs-chapter" id="enrollment">
+            <h2>2. First-Time Voice Biometric Enrollment</h2>
+            <p>
+              To guarantee that unauthorized room participants cannot command your machine, the engine extracts a 26-Dimensional MFCC acoustic signature during initialization.
+            </p>
+            <p><strong>The 5-Sample Enrollment Workflow:</strong></p>
+            <ol style="margin-left:20px; color:var(--text-secondary); margin-bottom:20px; line-height:1.8;">
+              <li>Sit approximately 12–18 inches from your microphone in standard room ambiance.</li>
+              <li>When prompted by the Smart Island, speak your 5 baseline wake phrases naturally.</li>
+              <li>The system computes the acoustic centroids and saves them encrypted under <code>~/.ansh/biometrics.dat</code>.</li>
+              <li>Set an emergency 4-digit PBKDF2 salted PIN for password fallback.</li>
+            </ol>
+          </section>
+
+          <!-- CHAPTER 3: COMMANDS & MODES -->
+          <section class="docs-chapter" id="commands">
+            <h2>3. Voice Interaction & Semantic Intents</h2>
+            <p>
+              Rather than memorizing rigid command syntax, speak colloquially. The natural language layer translates intentions directly to operational actions:
+            </p>
+
+            <table class="docs-table">
+              <thead>
+                <tr>
+                  <th>Intent</th>
+                  <th>Spoken Sample</th>
+                  <th>System Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Personality Switch</strong></td>
+                  <td><code>"Switch to Dev mode"</code> / <code>"Be concise"</code></td>
+                  <td>Dynamically alters system temperature and speech style</td>
+                </tr>
+                <tr>
+                  <td><strong>Screen Vision</strong></td>
+                  <td><code>"Explain what error is on my screen"</code></td>
+                  <td>Captures active display, runs OCR/multimodal pass, and dictates fix</td>
+                </tr>
+                <tr>
+                  <td><strong>Code Repair</strong></td>
+                  <td><code>"Ansh, fix the syntax bug in this file"</code></td>
+                  <td>Resolves active VS Code buffer and applies unified diff</td>
+                </tr>
+                <tr>
+                  <td><strong>Emergency Killswitch</strong></td>
+                  <td><code>"ANSH Freeze!"</code></td>
+                  <td>Immediately drops all ongoing automation threads</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <!-- CHAPTER 4: COMPUTER CONTROL & VISION -->
+          <section class="docs-chapter" id="control">
+            <h2>4. Autonomous Desktop Control & Vision</h2>
+            <p>
+              Autonomous control operates via Win32 system APIs and PyAutoGUI, providing multi-monitor window management, input injection, and file tree operations.
+            </p>
+            <p>
+              <strong>Screen Peeler Engine:</strong> Employs high-speed visual localization, outputting normalized coordinate matrices <code>[ymin, xmin, ymax, xmax]</code> that remain calibrated across high-DPI and multi-resolution display grids.
+            </p>
+          </section>
+
+          <!-- CHAPTER 5: CODING WORKFLOWS -->
+          <section class="docs-chapter" id="coding">
+            <h2>5. Developer & Coding Agent Workflows</h2>
+            <p>
+              Engineered for developer productivity with context-aware editor awareness:
+            </p>
+            <ul style="margin-left:20px; color:var(--text-secondary); margin-bottom:20px; line-height:1.7;">
+              <li><strong>Referential Pronoun Awareness:</strong> Saying <em>"run this test"</em> or <em>"inspect this function"</em> maps automatically to the focused IDE tab.</li>
+              <li><strong>Self-Healing Iteration:</strong> Reads compiler errors from the terminal, adjusts code, and loops until unit test passes are confirmed.</li>
+            </ul>
+          </section>
+
+          <!-- CHAPTER 6: SHADOW ROLLBACK -->
+          <section class="docs-chapter" id="safety">
+            <h2>6. Enterprise Safety & Shadow Rollback Engine</h2>
+            <p>
+              Autonomous file modifications are backed by atomic snapshots before execution:
+            </p>
+            <div class="code-block">
+[Action Triggered]
+       │
+       ▼
+[Risk Classifier] ──► Low/Medium: Execute immediately
+       │          ──► High/Critical: Request verbal confirmation
+       ▼
+[Shadow Snapshot] ──► Generates differential backup in ~/.ansh/shadow/
+       │
+       ▼
+[Action Executes] ──► Undo requested? ──► Instant 1-Click Rollback!
+            </div>
+          </section>
+
+          <!-- CHAPTER 7: SMART ISLAND HUD -->
+          <section class="docs-chapter" id="hud">
+            <h2>7. Smart Island HUD Interface</h2>
+            <p>
+              The non-intrusive desktop pill presents real-time operational feedback:
+            </p>
+            <ul style="margin-left:20px; color:var(--text-secondary); margin-bottom:20px; line-height:1.8;">
+              <li><strong style="color:#34d399;">🟢 Listening:</strong> Ambient microphone streaming.</li>
+              <li><strong style="color:#ffffff;">⚪ Reasoning:</strong> Dual-model sub-agent planning.</li>
+              <li><strong style="color:#c4c4c4;">🔘 Speaking:</strong> Zero-latency TTS voice output.</li>
+              <li><strong style="color:#fbbf24;">🟡 Confirming:</strong> Elevated permission action awaiting clearance.</li>
+              <li><strong style="color:#f87171;">🔴 Freeze:</strong> Hard emergency safety stop engaged.</li>
+            </ul>
+          </section>
+
+          <!-- CHAPTER 8: TEACHING WORKFLOWS -->
+          <section class="docs-chapter" id="memory">
+            <h2>8. Workflow Demonstration & Memory Triples</h2>
+            <p>
+              Teach recurring workflows by direct demonstration. Saying <code>"Ansh, watch how I do this"</code> starts macro recording of clicks, key events, and window switches, compiling them into a permanent custom voice command.
+            </p>
+          </section>
+
+          <!-- CHAPTER 9: STUDY INTELLIGENCE -->
+          <section class="docs-chapter" id="study">
+            <h2>9. Study & Research Intelligence</h2>
+            <p>
+              Drag any PDF, slide deck, or technical whitepaper onto the Smart Island to trigger automated concept extraction, interactive oral Q&A, and study flashcards.
+            </p>
+          </section>
+
+          <!-- CHAPTER 10: ACTIVATION -->
+          <section class="docs-chapter" id="activation">
+            <h2>10. Commercial License Activation Guide</h2>
+            <p>
+              To register your purchased license key on your Windows machine:
+            </p>
+            <ol style="margin-left:20px; color:var(--text-secondary); margin-bottom:20px; line-height:1.8;">
+              <li>Obtain your license key via <a href="checkout.html" style="color:#ffffff; text-decoration:underline;">checkout.html</a>.</li>
+              <li>Launch the ANSH AI desktop client.</li>
+              <li>Press <kbd style="background:#222; padding:3px 8px; border-radius:4px; border:1px solid #444;">Alt</kbd> + <kbd style="background:#222; padding:3px 8px; border-radius:4px; border:1px solid #444;">Shift</kbd> + <kbd style="background:#222; padding:3px 8px; border-radius:4px; border:1px solid #444;">A</kbd> or open <strong>Settings &rarr; License</strong>.</li>
+              <li>Enter your <code>ANSH-XXXX-XXXX-XXXX</code> key and click <strong>Activate</strong>.</li>
+            </ol>
+          </section>
+
+          <!-- CHAPTER 11: TROUBLESHOOTING -->
+          <section class="docs-chapter" id="troubleshooting">
+            <h2>11. Troubleshooting & Frequently Asked Questions</h2>
+            
+            <div class="docs-accordion-item">
+              <div class="docs-accordion-header">
+                <span>How does v2.5.0 eliminate scipy DLL Windows Defender warnings?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+              <div class="docs-accordion-body">
+                Earlier releases relied on compiled numerical C-extensions that triggered Windows SmartScreen heuristics. Build v2.5.0 features a completely native mathematical audio pipeline with zero external binary DLLs, ensuring clean SmartScreen execution.
+              </div>
+            </div>
+
+            <div class="docs-accordion-item">
+              <div class="docs-accordion-header">
+                <span>What should I do if the system responds with "Unknown Speaker"?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+              <div class="docs-accordion-body">
+                Significant background acoustics or microphone swaps can shift your acoustic centroid. Enter your emergency 4-digit PIN via the Smart Island input, or re-run biometric enrollment with <code>python main.py --re-enroll</code>.
+              </div>
+            </div>
+
+            <div class="docs-accordion-item">
+              <div class="docs-accordion-header">
+                <span>Can I operate ANSH AI completely offline?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+              <div class="docs-accordion-body">
+                Yes. All core desktop control hooks, keyboard/mouse automation, shadow rollbacks, and offline local voice models run 100% locally without sending computer screen data to external cloud services.
+              </div>
+            </div>
+
+            <div class="docs-accordion-item">
+              <div class="docs-accordion-header">
+                <span>How do I contact founder Anshu Dubey for priority support?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+              <div class="docs-accordion-body">
+                Lifetime license holders receive priority access via Telegram and WhatsApp, or email directly at <a href="mailto:support@getyoursoft.page.gd" style="color:#ffffff; text-decoration:underline;">support@getyoursoft.page.gd</a>.
+              </div>
+            </div>
+
+          </section>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Complex Site Footer -->
+    <footer class="site-footer-complex">
+      <div class="footer-top-grid">
+        
+        <!-- Brand / Identity -->
+        <div class="footer-brand-col">
+          <h4>
+            <svg class="logo-mark-svg" viewBox="0 0 24 24" style="width:20px; height:20px;">
+              <g transform="rotate(-30 12 12)">
+                <circle cx="7.3" cy="3.2" r="1.45"/>
+                <rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+                <rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+                <circle cx="16.7" cy="20.8" r="1.45"/>
+              </g>
+            </svg>
+            Vesper.ai / GetYourSoft
+          </h4>
+          <p class="footer-brand-desc">
+            Next-generation autonomous operational AI infrastructure and desktop intelligence. Engineered by <strong>Anshu Dubey</strong> in <strong>Barnahal, India</strong>.
+          </p>
+          <div style="font-size:13px; color:var(--muted);">
+            Flagship Product: <strong>ANSH AI (v2.5.0)</strong>
+          </div>
+        </div>
+
+        <!-- Col 1: Platform -->
+        <div class="footer-links-col">
+          <h5>Platform</h5>
+          <ul class="footer-nav-list">
+            <li><a href="pricing.html">Pricing & Plans</a></li>
+            <li><a href="checkout.html">FamPay UPI Checkout</a></li>
+            <li><a href="signin.html">Dashboard & Auth</a></li>
+            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="admin.html">Admin Console</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Architecture -->
+        <div class="footer-links-col">
+          <h5>Architecture</h5>
+          <ul class="footer-nav-list">
+            <li><a href="docs.html#quickstart">Zero-Dep Voice Engine</a></li>
+            <li><a href="docs.html#control">Screen Peeler Vision</a></li>
+            <li><a href="docs.html#safety">Shadow Rollback Engine</a></li>
+            <li><a href="docs.html#enrollment">Biometric Voice Shield</a></li>
+            <li><a href="docs.html#troubleshooting">Troubleshooting FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Legal & Trust -->
+        <div class="footer-links-col">
+          <h5>Legal & Security</h5>
+          <ul class="footer-nav-list">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions (EULA)</a></li>
+            <li><a href="refund.html">Refund & Cancellation</a></li>
+            <li><a href="https://github.com/anshu-dubey/ansh-ai" target="_blank">GitHub Repository</a></li>
+            <li><a href="mailto:support@getyoursoft.page.gd">Support Contact</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          © 2026 Vesper.ai &bull; GetYourSoft. All rights reserved. Architected by <strong>Anshu Dubey</strong>.
+        </div>
+        <div>
+          Domain: <code>getyoursoft.page.gd</code> &bull; Built in Barnahal, India.
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="js/docs.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var burgerBtn = document.getElementById('burger-btn');
+      var backdrop = document.getElementById('menu-backdrop');
+      var body = document.body;
+
+      function toggleMenu() {
+        var isOpen = body.classList.toggle('menu-open');
+        if (burgerBtn) {
+          burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          burgerBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        }
+      }
+
+      function closeMenu() {
+        if (body.classList.contains('menu-open')) {
+          body.classList.remove('menu-open');
+          if (burgerBtn) {
+            burgerBtn.setAttribute('aria-expanded', 'false');
+            burgerBtn.setAttribute('aria-label', 'Open menu');
+          }
+        }
+      }
+
+      if (burgerBtn) burgerBtn.addEventListener('click', toggleMenu);
+      if (backdrop) backdrop.addEventListener('click', closeMenu);
+
+      var navLinks = document.querySelectorAll('#site-nav a');
+      navLinks.forEach(function (link) { link.addEventListener('click', closeMenu); });
+
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' || e.keyCode === 27) closeMenu();
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 901) closeMenu();
+      });
+
+      // Accordion Toggle
+      var headers = document.querySelectorAll('.docs-accordion-header');
+      headers.forEach(function (hdr) {
+        hdr.addEventListener('click', function () {
+          var item = this.parentElement;
+          item.classList.toggle('active');
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
