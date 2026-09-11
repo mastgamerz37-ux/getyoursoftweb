@@ -118,25 +118,72 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    /* Background Video (100% opacity, no overlay) */
+    /* Background Video (Illuminated, Scaled & Centered) */
     .hero-photo {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
+      height: 100dvh;
       z-index: 0;
       overflow: hidden;
       pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .hero-photo video {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
+      object-position: center 32%;
+      transform: scale(1.72);
+      transform-origin: center 32%;
+      filter: contrast(1.22) brightness(1.35) drop-shadow(0 0 45px rgba(255, 255, 255, 0.25));
       display: block;
       opacity: 1;
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Ambient Neural Luminous Auras */
+    .ambient-glow-core {
+      position: fixed;
+      top: 36%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(1200px, 98vw);
+      height: min(700px, 80vh);
+      background: radial-gradient(ellipse at center, 
+        rgba(255, 255, 255, 0.22) 0%, 
+        rgba(200, 225, 255, 0.12) 32%, 
+        rgba(56, 189, 248, 0.05) 54%, 
+        rgba(0, 0, 0, 0) 76%
+      );
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 0;
+      animation: aura-pulse 7s ease-in-out infinite alternate;
+    }
+
+    .ambient-glow-ring {
+      position: fixed;
+      top: 38%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(880px, 92vw);
+      height: min(440px, 52vh);
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.14) 0%, transparent 68%);
+      filter: blur(42px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes aura-pulse {
+      0% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.75; }
+      100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
     }
 
     /* Page Container */
@@ -377,14 +424,16 @@
     }
 
     /* ==============================================================================
-       HERO (BOTTOM-CENTERED, NOT VERTICALLY CENTERED)
+       HERO (IMPACT-CENTERED WITH PROMINENT NEURAL WAVE BACKGROUND)
        ============================================================================== */
     .hero {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
-      padding: 8px 24px var(--hero-gap);
+      padding: 40px 24px 70px;
       min-height: 0;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-copy {
@@ -919,7 +968,11 @@
   <!-- Grain Overlay -->
   <div class="grain"></div>
 
-  <!-- Background Video (100% opacity, no overlay) -->
+  <!-- Atmospheric Neural Glow Layers -->
+  <div class="ambient-glow-core"></div>
+  <div class="ambient-glow-ring"></div>
+
+  <!-- Background Video (Illuminated, Scaled & Centered) -->
   <div class="hero-photo">
     <video class="bg-video" autoplay muted loop playsinline>
       <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa.mp4" type="video/mp4"/>
@@ -946,13 +999,13 @@
         <span>Ansh Ai<span class="logo-suffix"> — Your Own Ai Friend</span></span>
       </a>
 
-      <!-- Center: Liquid-Metal Nav Pills -->
+      <!-- Center: Liquid-Metal Nav Pills (Products, Docs, Pricing, About, Contact) -->
       <nav id="site-nav" aria-label="Primary">
-        <a href="#benefits" class="nav-pill appear appear--scale" style="--d: 0.16s;">Benefits</a>
-        <a href="#how-it-works" class="nav-pill appear appear--soft" style="--d: 0.28s;">How It Works</a>
-        <a href="#faqs" class="nav-pill appear appear--scale" style="--d: 0.40s;">FAQs</a>
-        <a href="pricing.html" class="nav-pill appear appear--soft" style="--d: 0.52s;">Pricing</a>
-        <a href="docs.html" class="nav-pill appear appear--scale" style="--d: 0.60s;">Docs</a>
+        <a href="benefits.html" class="nav-pill appear appear--scale" style="--d: 0.16s;">Products</a>
+        <a href="docs.html" class="nav-pill appear appear--soft" style="--d: 0.28s;">Docs</a>
+        <a href="pricing.html" class="nav-pill appear appear--scale" style="--d: 0.40s;">Pricing</a>
+        <a href="about.html" class="nav-pill appear appear--soft" style="--d: 0.52s;">About</a>
+        <a href="mailto:support@getyoursoft.page.gd" class="nav-pill appear appear--scale" style="--d: 0.60s;">Contact</a>
       </nav>
 
       <!-- Right: Header CTA + Burger Button -->
@@ -1123,14 +1176,15 @@
           </ul>
         </div>
 
-        <!-- Col 3: Legal & Trust -->
+        <!-- Col 3: Legal & Security -->
         <div class="footer-links-col">
-          <h5>Legal & Security</h5>
+          <h5>Legal & Directory</h5>
           <ul class="footer-nav-list">
             <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms & Conditions (EULA)</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
             <li><a href="refund.html">Refund & Cancellation</a></li>
-            <li><a href="https://github.com/anshu-dubey/ansh-ai" target="_blank">GitHub Repository</a></li>
+            <li><a href="sitemap.xml" target="_blank">Sitemap.xml (Robots)</a></li>
+            <li><a href="sitemap.html">Sitemap.html (HTML)</a></li>
             <li><a href="mailto:support@getyoursoft.page.gd">Support Contact</a></li>
           </ul>
         </div>
@@ -1141,8 +1195,14 @@
         <div>
           © 2026 Ansh Ai - Your Own Ai Friend &bull; GetYourSoft. All rights reserved. Architected by <strong>Anshu Dubey</strong>.
         </div>
-        <div>
-          Domain: <code>getyoursoft.page.gd</code> &bull; Built in Barnahal, India.
+        <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap;">
+          <a href="privacy.html" style="color:var(--muted); font-size:12.5px; text-decoration:none;">Privacy Policy</a>
+          <span style="color:rgba(255,255,255,0.2);">&bull;</span>
+          <a href="terms.html" style="color:var(--muted); font-size:12.5px; text-decoration:none;">Terms & Conditions</a>
+          <span style="color:rgba(255,255,255,0.2);">&bull;</span>
+          <a href="sitemap.xml" target="_blank" style="color:var(--muted); font-size:12.5px; text-decoration:none;">Sitemap.xml</a>
+          <span style="color:rgba(255,255,255,0.2);">&bull;</span>
+          <a href="sitemap.html" style="color:var(--muted); font-size:12.5px; text-decoration:none;">Sitemap.html</a>
         </div>
       </div>
     </footer>
@@ -1230,6 +1290,20 @@
           closeMenu();
         }
       });
+
+      // 6. Smooth Subtle Mouse Parallax for Neural Background Wave
+      var bgVideo = document.querySelector('.hero-photo video');
+      var glowCore = document.querySelector('.ambient-glow-core');
+      if (bgVideo && window.matchMedia('(pointer: fine)').matches) {
+        window.addEventListener('mousemove', function (e) {
+          var x = (e.clientX / window.innerWidth - 0.5) * 24;
+          var y = (e.clientY / window.innerHeight - 0.5) * 16;
+          bgVideo.style.transform = 'scale(1.72) translate(' + (x * 0.35) + 'px, ' + (y * 0.35) + 'px)';
+          if (glowCore) {
+            glowCore.style.transform = 'translate(calc(-50% + ' + (x * 0.6) + 'px), calc(-50% + ' + (y * 0.6) + 'px))';
+          }
+        }, { passive: true });
+      }
 
     })();
   </script>
