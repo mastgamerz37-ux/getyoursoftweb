@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TLGXHGZW');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Checkout & Instant UPI Verification — Vesper.ai / GetYourSoft</title>
+
+  <!-- Force black immediately (Anti-Flash) -->
+  <style>
+    html, body { background: #000000 !important; color: #ffffff; }
+  </style>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Official Checkout for Vesper.ai & ANSH AI. Instant verification for FamPay, PhonePe, Google Pay, and Paytm via 12-digit UPI UTR. Instant commercial key delivery.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://getyoursoft.page.gd/checkout.html">
+
+  <!-- Favicon (Exact Vesper Data URI) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cg transform='rotate(-30 12 12)'%3E%3Ccircle cx='7.3' cy='3.2' r='1.45'/%3E%3Crect x='5.5' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Crect x='14.9' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Ccircle cx='16.7' cy='20.8' r='1.45'/%3E%3C/g%3E%3C/svg%3E">
+
+  <!-- Google Fonts: Inter variable + Instrument Serif italic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FR643S6NGM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FR643S6NGM');
+  </script>
+
+  <!-- Firebase Compat for onSnapshot Real-Time Listener -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    .checkout-hero {
+      text-align: center;
+      padding: 70px 24px 30px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .checkout-wrapper {
+      max-width: 620px;
+      margin: 0 auto 70px;
+    }
+
+    /* Amber Notice Banner */
+    .notice-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      background: rgba(251, 191, 36, 0.08);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      color: #fbbf24;
+      font-size: 13.5px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .notice-banner i {
+      font-size: 18px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    /* Plan Switcher Pills */
+    .plan-toggle-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 20px 0 28px;
+    }
+
+    .plan-toggle-label {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      cursor: pointer;
+      background: rgba(20, 20, 20, 0.6);
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .plan-toggle-label:hover {
+      border-color: rgba(255, 255, 255, 0.35);
+      background: rgba(30, 30, 30, 0.8);
+    }
+
+    .plan-toggle-label input[type="radio"] {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      accent-color: #ffffff;
+    }
+
+    .plan-toggle-label.active {
+      border-color: rgba(255, 255, 255, 0.6);
+      background: linear-gradient(180deg, rgba(35, 35, 35, 0.85) 0%, rgba(20, 20, 20, 0.95) 100%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.08);
+    }
+
+    /* QR Code Display */
+    .qr-container-box {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      display: inline-block;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      margin: 16px 0 12px;
+    }
+
+    .qr-container-box img {
+      display: block;
+      width: 210px;
+      height: 210px;
+    }
+
+    /* UTR Guide */
+    .utr-guide-box {
+      margin-top: 28px;
+      background: rgba(12, 12, 12, 0.6);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .utr-guide-nav {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border-soft);
+      padding-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .utr-guide-tab {
+      background: none;
+      border: 1px solid var(--border-soft);
+      color: var(--muted);
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .utr-guide-tab.active {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+    }
+
+    .utr-guide-panel {
+      display: none;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .utr-guide-panel.active {
+      display: block;
+    }
+
+    .utr-highlight-chip {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+
+    /* Radar Pending Animation */
+    .radar-container {
+      padding: 40px 20px;
+    }
+
+    .radar-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      animation: pulse-glow 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.25); }
+      70% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+    }
+
+    /* Key Box Celebration */
+    .celebration-key-box {
+      background: #090909;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin: 24px 0 28px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.06);
+    }
+
+    .key-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .key-value {
+      font-family: var(--font-mono);
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.1em;
+    }
+
+    .status-error {
+      background: rgba(248, 113, 113, 0.1);
+      border: 1px solid rgba(248, 113, 113, 0.3);
+      color: #f87171;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      margin-bottom: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body style="background:#000;color:#fff">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TLGXHGZW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Grain Overlay -->
+  <div class="grain"></div>
+
+  <!-- Main Viewport Page Container -->
+  <div class="page" style="min-height:100vh; display:flex; flex-direction:column;">
+    <div class="menu-backdrop" id="menu-backdrop"></div>
+
+    <!-- Header — 3-Column Grid -->
+    <header class="header">
+      
+      <!-- Left: Logo -->
+      <a href="index.html" class="logo" aria-label="Vesper.ai">
+        <svg class="logo-mark-svg" viewBox="0 0 24 24">
+          <g transform="rotate(-30 12 12)">
+            <circle cx="7.3" cy="3.2" r="1.45"/>
+            <rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+            <rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+            <circle cx="16.7" cy="20.8" r="1.45"/>
+          </g>
+        </svg>
+        <span>Vesper<span class="logo-suffix">.ai</span></span>
+      </a>
+
+      <!-- Center: Liquid-Metal Nav Pills -->
+      <nav id="site-nav" aria-label="Primary">
+        <a href="index.html#benefits" class="nav-pill">Benefits</a>
+        <a href="index.html#how-it-works" class="nav-pill">How It Works</a>
+        <a href="pricing.html" class="nav-pill">Pricing</a>
+        <a href="docs.html" class="nav-pill">Docs</a>
+        <a href="signin.html" class="nav-pill">Account</a>
+      </nav>
+
+      <!-- Right: Header CTA + Burger Button -->
+      <div style="display:flex; align-items:center; gap:10px; justify-self:end;">
+        <a href="pricing.html" class="btn btn-ghost header-cta">
+          <i class="fa-solid fa-arrow-left"></i> Plans
+        </a>
+
+        <button type="button" class="burger-btn" id="burger-btn" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+        </button>
+      </div>
+
+    </header>
+
+    <!-- Main Content Area -->
+    <main style="flex:1;">
+      
+      <section class="checkout-hero">
+        <div class="badge">
+          <svg class="badge-star" viewBox="0 0 24 24">
+            <path d="M12 2.6C12.55 2.6 12.88 3.15 13.08 4.7c.62 4.7 1.52 5.6 6.22 6.22 1.55.2 2.1.53 2.1 1.08s-.55.88-2.1 1.08c-4.7.62-5.6 1.52-6.22 6.22-.2 1.55-.53 2.1-1.08 2.1s-.88-.55-1.08-2.1c-.62-4.7-1.52-5.6-6.22-6.22C3.15 12.88 2.6 12.55 2.6 12s.55-.88 2.1-1.08c4.7-.62 5.6-1.52 6.22-6.22C11.12 3.15 11.45 2.6 12 2.6Z"/>
+          </svg>
+          <span>Encrypted Direct UPI Gateway</span>
+        </div>
+
+        <h1 style="font-size: clamp(28px, 4vw, 42px); margin-bottom: 12px;">
+          Instant FamPay UPI <em>Activation</em>
+        </h1>
+        <p class="lede" style="max-width:540px; margin:0 auto;">
+          Pay zero payment gateway surcharges. Scan the merchant QR, submit your 12-digit UTR, and receive your commercial license key on-screen instantly.
+        </p>
+      </section>
+
+      <section class="container checkout-wrapper">
+        
+        <!-- Notice Banner -->
+        <div class="notice-banner">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <div>
+            <strong>Important Step:</strong> After paying via UPI, copy your <strong>12-digit UPI Reference Number (UTR)</strong> from your payment receipt and paste it below. Your product key will be unlocked in real-time upon verification.
+          </div>
+        </div>
+
+        <!-- STATE 1: CHECKOUT FORM & QR -->
+        <div class="card" id="checkout-form-card">
+          
+          <div style="text-align:center; margin-bottom:20px;">
+            <h2 style="font-size:22px; font-weight:600;" id="checkout-plan-title">
+              Lifetime Access (Pay Once, Forever)
+            </h2>
+            <div style="font-size:36px; font-weight:700; color:#ffffff; margin-top:4px;" id="checkout-display-amount">
+              ₹999
+            </div>
+          </div>
+
+          <!-- Plan Selector -->
+          <div class="plan-toggle-group">
+            <label class="plan-toggle-label active" for="plan-lifetime">
+              <input type="radio" id="plan-lifetime" name="plan-selector" value="lifetime" checked>
+              <strong style="display:block; font-size:14px; color:#ffffff;">Lifetime Access 🔥</strong>
+              <span style="font-size:13px; color:var(--muted); font-weight:600;">₹999 one-time</span>
+              <div style="font-size:11.5px; color:#34d399; margin-top:4px;">Saves ₹1,389/yr</div>
+            </label>
+
+            <label class="plan-toggle-label" for="plan-monthly">
+              <input type="radio" id="plan-monthly" name="plan-selector" value="monthly">
+              <strong style="display:block; font-size:14px; color:#ffffff;">Monthly Plan</strong>
+              <span style="font-size:13px; color:var(--muted); font-weight:600;">₹199 / month</span>
+              <div style="font-size:11.5px; color:var(--muted); margin-top:4px;">Cancel anytime</div>
+            </label>
+          </div>
+
+          <!-- QR Code Display -->
+          <div style="text-align:center;">
+            <div class="qr-container-box">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=upi://pay?pa=7037048415@fam" alt="FamPay Merchant QR" id="fampay-qr-image">
+            </div>
+            <div style="font-size:13.5px; margin-top:8px;">
+              Merchant VPA: <code style="color:#ffffff; font-weight:600; padding:2px 8px; background:rgba(255,255,255,0.08); border-radius:4px;">7037048415@fam</code>
+            </div>
+            <div style="font-size:12px; color:var(--muted); margin-top:4px;">
+              Compatible with PhonePe, Google Pay, Paytm, CRED & FamPay
+            </div>
+          </div>
+
+          <!-- 1-Tap Mobile Button -->
+          <div style="text-align:center; margin:20px 0 24px;">
+            <a href="upi://pay?pa=7037048415@fam&pn=GetYourSoft&am=999&cu=INR" class="btn btn-ghost" id="upi-deeplink-btn" style="height:42px; font-size:13.5px;">
+              <i class="fa-solid fa-mobile-screen" style="margin-right:8px;"></i> 1-Tap Pay via UPI App (Mobile)
+            </a>
+          </div>
+
+          <!-- Error Alert -->
+          <div class="status-error" id="checkout-error-msg"></div>
+
+          <!-- UTR Submission Form -->
+          <form>
+            <div class="form-group">
+              <label class="form-label" for="payer-upi-id">Your UPI ID or VPA</label>
+              <input type="text" id="payer-upi-id" class="form-input" placeholder="e.g. rahul@oksbi or yourname@fam" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="payer-utr-number">
+                12-Digit UPI Reference Number (UTR / Ref No.)
+              </label>
+              <input type="text" id="payer-utr-number" class="form-input form-input-mono" maxlength="12" placeholder="e.g. 425518291034" required pattern="\d{12}">
+              <div style="font-size:12px; color:var(--muted); margin-top:6px;">
+                Must be exactly 12 numeric digits from your transaction confirmation.
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-solid" id="submit-payment-btn" style="width:100%; height:48px; font-size:14.5px;">
+              <i class="fa-solid fa-shield-check" style="margin-right:8px;"></i> Verify UTR & Generate Product Key
+            </button>
+          </form>
+
+          <!-- UTR Guide -->
+          <div class="utr-guide-box">
+            <h4 style="font-size:13.5px; font-weight:600; margin-bottom:12px; color:#ffffff;">
+              <i class="fa-solid fa-circle-question" style="color:var(--muted); margin-right:6px;"></i> Where to find your 12-digit UTR?
+            </h4>
+
+            <div class="utr-guide-nav">
+              <button type="button" class="utr-guide-tab active" data-target="guide-gpay">Google Pay</button>
+              <button type="button" class="utr-guide-tab" data-target="guide-phonepe">PhonePe</button>
+              <button type="button" class="utr-guide-tab" data-target="guide-paytm">Paytm</button>
+              <button type="button" class="utr-guide-tab" data-target="guide-fampay">FamPay</button>
+            </div>
+
+            <div class="utr-guide-panel active" id="guide-gpay">
+              <p>1. Open Google Pay &rarr; Tap transaction to <strong>GetYourSoft (7037048415@fam)</strong>.</p>
+              <p>2. Find <span class="utr-highlight-chip">UPI transaction ID</span> (12 digits like <code>425518291034</code>).</p>
+            </div>
+
+            <div class="utr-guide-panel" id="guide-phonepe">
+              <p>1. Open PhonePe &rarr; Tap <strong>History</strong> &rarr; Select payment receipt.</p>
+              <p>2. Copy the 12-digit number labeled <span class="utr-highlight-chip">UTR</span>.</p>
+            </div>
+
+            <div class="utr-guide-panel" id="guide-paytm">
+              <p>1. Open Paytm &rarr; Tap <strong>Balance & History</strong> &rarr; Select receipt.</p>
+              <p>2. Copy the 12-digit <span class="utr-highlight-chip">UPI Ref No.</span>.</p>
+            </div>
+
+            <div class="utr-guide-panel" id="guide-fampay">
+              <p>1. Open FamPay &rarr; View Activity &rarr; Open receipt for <strong>GetYourSoft</strong>.</p>
+              <p>2. Copy the 12-digit <span class="utr-highlight-chip">Bank Reference Number</span>.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- STATE 2: PENDING RADAR -->
+        <div class="card" id="checkout-pending-card" style="display:none; text-align:center;">
+          <div class="radar-container">
+            <div class="radar-circle">
+              <i class="fa-solid fa-satellite-dish" style="font-size:28px; color:#ffffff;"></i>
+            </div>
+            <h2 style="font-size:24px; font-weight:600; margin-bottom:8px;">
+              Verifying Payment Claim
+            </h2>
+            <p style="color:var(--muted); font-size:14px; max-width:440px; margin:0 auto 20px;">
+              An automated notification was dispatched to the admin console. Your screen will automatically transition to your Product Key as soon as verified. <strong>Please keep this tab open.</strong>
+            </p>
+            <div style="font-family:var(--font-mono); font-size:13px; color:#ffffff; background:rgba(255,255,255,0.08); padding:6px 16px; border-radius:var(--radius-pill); display:inline-block;">
+              <i class="fa-solid fa-spinner fa-spin" style="margin-right:6px;"></i> STATUS: PENDING_APPROVAL
+            </div>
+
+            <div style="margin-top:32px; padding-top:18px; border-top:1px dashed var(--border-soft);">
+              <p style="font-size:12px; color:var(--muted); margin-bottom:10px;">Local Dev / Instant Verification Override:</p>
+              <button type="button" class="btn btn-ghost" id="demo-instant-approve-btn" style="height:36px; font-size:12.5px;">
+                <i class="fa-solid fa-bolt" style="margin-right:6px;"></i> Simulate Immediate Admin Approval
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STATE 3: PRODUCT KEY DELIVERED -->
+        <div class="card" id="checkout-success-card" style="display:none; text-align:center;">
+          <div style="width:64px; height:64px; border-radius:50%; background:rgba(52, 211, 153, 0.15); border:1px solid #34d399; color:#34d399; font-size:28px; display:flex; align-items:center; justify-content:center; margin:0 auto 20px;">
+            <i class="fa-solid fa-check"></i>
+          </div>
+
+          <h2 style="font-size:26px; font-weight:600; margin-bottom:8px;">
+            Payment Verified! Welcome to ANSH AI
+          </h2>
+          <p style="color:var(--muted); font-size:14px; max-width:460px; margin:0 auto 24px;">
+            Your commercial license has been activated and permanently registered. A backup confirmation has also been dispatched to your email.
+          </p>
+
+          <!-- Key Box -->
+          <div class="celebration-key-box">
+            <div class="key-title">Your Commercial License Key</div>
+            <div class="key-value" id="delivered-product-key">ANSH-XXXX-XXXX-XXXX</div>
+            <button type="button" class="btn btn-ghost" id="copy-delivered-key-btn" style="margin-top:16px; height:38px; font-size:13px;">
+              <i class="fa-regular fa-copy" style="margin-right:6px;"></i> Copy Product Key
+            </button>
+          </div>
+
+          <!-- Download & Action Buttons -->
+          <div style="display:flex; flex-direction:column; gap:12px; max-width:380px; margin:0 auto 24px;">
+            <button type="button" class="btn btn-solid" id="download-installer-btn" style="height:46px; font-size:14px;">
+              <i class="fa-brands fa-windows" style="margin-right:8px;"></i> Download ANSH AI Setup (v2.5.0)
+            </button>
+            <a href="docs.html#activation" class="btn btn-ghost" style="height:42px; font-size:13.5px;">
+              <i class="fa-solid fa-book-open" style="margin-right:8px;"></i> Read 3-Step Activation Guide
+            </a>
+          </div>
+
+          <div style="font-size:12.5px; color:var(--muted);">
+            Questions? Contact developer Anshu Dubey directly at <a href="mailto:support@getyoursoft.page.gd" style="color:#ffffff; text-decoration:underline;">support@getyoursoft.page.gd</a>.
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Complex Site Footer -->
+    <footer class="site-footer-complex">
+      <div class="footer-top-grid">
+        
+        <!-- Brand / Identity -->
+        <div class="footer-brand-col">
+          <h4>
+            <svg class="logo-mark-svg" viewBox="0 0 24 24" style="width:20px; height:20px;">
+              <g transform="rotate(-30 12 12)">
+                <circle cx="7.3" cy="3.2" r="1.45"/>
+                <rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+                <rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+                <circle cx="16.7" cy="20.8" r="1.45"/>
+              </g>
+            </svg>
+            Vesper.ai / GetYourSoft
+          </h4>
+          <p class="footer-brand-desc">
+            Next-generation autonomous operational AI infrastructure and desktop intelligence. Engineered by <strong>Anshu Dubey</strong> in <strong>Barnahal, India</strong>.
+          </p>
+          <div style="font-size:13px; color:var(--muted);">
+            Flagship Product: <strong>ANSH AI (v2.5.0)</strong>
+          </div>
+        </div>
+
+        <!-- Col 1: Platform -->
+        <div class="footer-links-col">
+          <h5>Platform</h5>
+          <ul class="footer-nav-list">
+            <li><a href="pricing.html">Pricing & Plans</a></li>
+            <li><a href="checkout.html">FamPay UPI Checkout</a></li>
+            <li><a href="signin.html">Dashboard & Auth</a></li>
+            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="admin.html">Admin Console</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Architecture -->
+        <div class="footer-links-col">
+          <h5>Architecture</h5>
+          <ul class="footer-nav-list">
+            <li><a href="docs.html#quickstart">Zero-Dep Voice Engine</a></li>
+            <li><a href="docs.html#control">Screen Peeler Vision</a></li>
+            <li><a href="docs.html#safety">Shadow Rollback Engine</a></li>
+            <li><a href="docs.html#enrollment">Biometric Voice Shield</a></li>
+            <li><a href="docs.html#troubleshooting">Troubleshooting FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Legal & Trust -->
+        <div class="footer-links-col">
+          <h5>Legal & Security</h5>
+          <ul class="footer-nav-list">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions (EULA)</a></li>
+            <li><a href="refund.html">Refund & Cancellation</a></li>
+            <li><a href="https://github.com/anshu-dubey/ansh-ai" target="_blank">GitHub Repository</a></li>
+            <li><a href="mailto:support@getyoursoft.page.gd">Support Contact</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          © 2026 Vesper.ai &bull; GetYourSoft. All rights reserved. Architected by <strong>Anshu Dubey</strong>.
+        </div>
+        <div>
+          Domain: <code>getyoursoft.page.gd</code> &bull; Built in Barnahal, India.
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="config.js"></script>
+  <script src="js/checkout.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var burgerBtn = document.getElementById('burger-btn');
+      var backdrop = document.getElementById('menu-backdrop');
+      var body = document.body;
+
+      function toggleMenu() {
+        var isOpen = body.classList.toggle('menu-open');
+        if (burgerBtn) {
+          burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          burgerBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        }
+      }
+
+      function closeMenu() {
+        if (body.classList.contains('menu-open')) {
+          body.classList.remove('menu-open');
+          if (burgerBtn) {
+            burgerBtn.setAttribute('aria-expanded', 'false');
+            burgerBtn.setAttribute('aria-label', 'Open menu');
+          }
+        }
+      }
+
+      if (burgerBtn) burgerBtn.addEventListener('click', toggleMenu);
+      if (backdrop) backdrop.addEventListener('click', closeMenu);
+
+      var navLinks = document.querySelectorAll('#site-nav a');
+      navLinks.forEach(function (link) { link.addEventListener('click', closeMenu); });
+
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' || e.keyCode === 27) closeMenu();
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 901) closeMenu();
+      });
+    })();
+  </script>
+
+</body>
+</html>
