@@ -10,7 +10,7 @@
 
   // Verify Admin Access
   var session = JSON.parse(localStorage.getItem('ansh_user_session') || '{}');
-  var isAdmin = session.role === 'admin' || session.email === 'support@getyoursoft.page.gd' || localStorage.getItem('ansh_admin_override') === 'true';
+  var isAdmin = session.role === 'admin' || session.email === 'mastgamerz37@gmail.com' || localStorage.getItem('ansh_admin_override') === 'true';
 
   var adminAuthGate = document.getElementById('admin-auth-gate');
   var adminMainLayout = document.getElementById('admin-main-layout');
