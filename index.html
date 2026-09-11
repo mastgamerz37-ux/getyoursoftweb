@@ -59,18 +59,17 @@
       --nav-h: 40px;
       --btn: 13.5px;
       --btn-h: 40px;
-      --hero-btn-h: 42px;
-      --h1: 48px;
-      --lede: 15.5px;
+      --h1: clamp(38px, 5.2vw, 64px);
+      --lede: 16.5px;
       --badge: 12.5px;
       --stat-size: 13.5px;
       --header-y: 22px;
       --header-x: 40px;
       --stats-x: 72px;
       --stats-y: 36px;
-      --hero-gap: 85px;
-      --copy-max: 860px;
-      --lede-max: 470px;
+      --hero-gap: 50px;
+      --copy-max: 1060px;
+      --lede-max: 680px;
     }
 
     html, body {
@@ -190,8 +189,8 @@
     .page {
       position: relative;
       z-index: 1;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
+      display: flex;
+      flex-direction: column;
       min-height: 100vh;
       min-height: 100dvh;
     }
@@ -514,8 +513,198 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    /* ==============================================================================
+       FLAGSHIP DESKTOP SHOWCASE (Expands the Center Prominently)
+       ============================================================================== */
+    .desktop-showcase {
+      width: 100%;
+      max-width: 1040px;
+      margin-top: 45px;
+      background: rgba(10, 10, 10, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      box-shadow: 0 35px 90px rgba(0, 0, 0, 0.95), 0 0 50px rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      text-align: left;
+    }
+
+    .window-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      background: rgba(22, 22, 22, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .window-dots .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+    .dot.red { background: #ef4444; }
+    .dot.yellow { background: #eab308; }
+    .dot.green { background: #22c55e; }
+
+    .window-title {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #cccccc;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .window-badge {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    .window-body {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      min-height: 290px;
+    }
+
+    @media (max-width: 860px) {
+      .window-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .console-stream {
+      padding: 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: #040404;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    .stream-line {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    .stream-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      width: fit-content;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .stream-tag.user { background: rgba(168, 85, 247, 0.18); color: #c084fc; }
+    .stream-tag.system { background: rgba(56, 189, 248, 0.18); color: #38bdf8; }
+    .stream-tag.ok { background: rgba(34, 197, 94, 0.18); color: #4ade80; }
+
+    .stream-text {
+      color: #e2e8f0;
+    }
+
+    .console-sidebar {
+      padding: 22px 20px;
+      background: #090909;
+      display: flex;
+      flex-direction: column;
       gap: 10px;
-      margin-top: 26px;
+    }
+
+    .platform-mini-header {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .platform-mini-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .platform-mini-item.active {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .platform-mini-item.active:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 255, 255, 0.45);
+      transform: translateX(3px);
+    }
+
+    .platform-mini-item.disabled {
+      opacity: 0.55;
+      cursor: default;
+    }
+
+    .p-icon {
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .p-info {
+      flex: 1;
+    }
+
+    .p-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .p-badge {
+      font-size: 9.5px;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    .p-badge.live { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+    .p-badge.soon { background: rgba(255, 255, 255, 0.1); color: #94a3b8; }
+
+    .p-desc {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    .p-arrow {
+      color: var(--muted);
+      font-size: 14px;
     }
 
     /* ==============================================================================
@@ -1001,11 +1190,11 @@
 
       <!-- Center: Liquid-Metal Nav Pills (Products, Docs, Pricing, About, Contact) -->
       <nav id="site-nav" aria-label="Primary">
-        <a href="benefits.html" class="nav-pill appear appear--scale" style="--d: 0.16s;">Products</a>
+        <a href="product.html" class="nav-pill appear appear--scale" style="--d: 0.16s;">Products</a>
         <a href="docs.html" class="nav-pill appear appear--soft" style="--d: 0.28s;">Docs</a>
         <a href="pricing.html" class="nav-pill appear appear--scale" style="--d: 0.40s;">Pricing</a>
         <a href="about.html" class="nav-pill appear appear--soft" style="--d: 0.52s;">About</a>
-        <a href="mailto:support@getyoursoft.page.gd" class="nav-pill appear appear--scale" style="--d: 0.60s;">Contact</a>
+        <a href="mailto:mastgamerz37@gmail.com" class="nav-pill appear appear--scale" style="--d: 0.60s;">Contact</a>
       </nav>
 
       <!-- Right: Header CTA + Burger Button -->
@@ -1032,32 +1221,115 @@
           <svg class="badge-star" viewBox="0 0 24 24">
             <path d="M12 2.6C12.55 2.6 12.88 3.15 13.08 4.7c.62 4.7 1.52 5.6 6.22 6.22 1.55.2 2.1.53 2.1 1.08s-.55.88-2.1 1.08c-4.7.62-5.6 1.52-6.22 6.22-.2 1.55-.53 2.1-1.08 2.1s-.88-.55-1.08-2.1c-.62-4.7-1.52-5.6-6.22-6.22C3.15 12.88 2.6 12.55 2.6 12s.55-.88 2.1-1.08c4.7-.62 5.6-1.52 6.22-6.22C11.12 3.15 11.45 2.6 12 2.6Z"/>
           </svg>
-          <span>Operational AI Infrastructure</span>
+          <span>ANSH AI v1.0.0 &bull; Your Own AI Friend</span>
         </div>
 
         <!-- H1 Headline (Two Masked Lines) -->
         <h1 class="headline">
           <span class="headline-line appear appear--mask" style="--d: 0.42s;">
-            Train <em>AI agents</em> on your
+            Your Autonomous <em>AI Friend</em> for
           </span>
           <span class="headline-line appear appear--mask" style="--d: 0.62s;">
-            workflows in minutes.
+            Windows Desktop & Beyond.
           </span>
         </h1>
 
         <!-- Lede Copy -->
         <p class="lede appear appear--soft" style="--d: 0.82s; animation-duration: 1.25s;">
-          Deploy adaptive AI agents that learn, execute, and scale operational tasks across your business.
+          Real-time 60 FPS Screen Peeler Vision, instant zero-cloud voice biometrics, and native Win32 keyboard & mouse agency. Engineered in Barnahal, India by <strong>Anshu Dubey</strong>.
         </p>
 
         <!-- Actions -->
         <div class="hero-actions">
-          <a href="signin.html" class="btn btn-solid hero-btn appear appear--btn" style="--d: 0.96s;">
-            Start for Free
+          <a href="product.html#pc-card" class="btn btn-solid hero-btn appear appear--btn" style="--d: 0.96s; font-size:14px; padding:0 24px; height:46px;">
+            ⬇️ Download for Windows PC (v1.0.0)
           </a>
-          <a href="docs.html" class="btn btn-ghost hero-btn appear appear--side" style="--d: 1.10s;">
-            See it in action
+          <a href="product.html" class="btn btn-ghost hero-btn appear appear--side" style="--d: 1.10s; font-size:14px; padding:0 24px; height:46px;">
+            Explore All Devices (PC, Phone, Mac) →
           </a>
+        </div>
+
+        <!-- Interactive Live Desktop Showcase Window (Grand Centerpiece) -->
+        <div class="desktop-showcase appear appear--mask" style="--d: 1.15s;">
+          
+          <!-- Window Header Bar -->
+          <div class="window-bar">
+            <div class="window-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="window-title">
+              <svg viewBox="0 0 24 24" style="width:13px; height:13px; fill:currentColor;"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.901-1.8"/></svg>
+              ANSH AI Desktop Operator — Windows Edition (v1.0.0 Active)
+            </div>
+            <div class="window-badge">60 FPS Perception</div>
+          </div>
+
+          <!-- Window Body (Simulation of ANSH AI Executing Real Workflow) -->
+          <div class="window-body">
+            
+            <!-- Left Console: Live Event Stream -->
+            <div class="console-stream">
+              <div class="stream-line prompt">
+                <span class="stream-tag user">VOICE INPUT (Anshu Dubey)</span>
+                <span class="stream-text">"ANSH, analyze open invoices on screen, calculate total tax, and update the financial sheet."</span>
+              </div>
+
+              <div class="stream-line log">
+                <span class="stream-tag system">SCREEN PEELER (VISION)</span>
+                <span class="stream-text">Captured display (1920x1080) &bull; Detected 4 active windows: Acrobat Reader, MS Excel, Calculator & Explorer. Extracted 8 invoice entries.</span>
+              </div>
+
+              <div class="stream-line log">
+                <span class="stream-tag system">VOICE BIOMETRICS</span>
+                <span class="stream-text">Speaker voiceprint matched profile: <strong style="color:#4ade80;">Anshu Dubey (Confidence: 99.6%)</strong>. Command authorized.</span>
+              </div>
+
+              <div class="stream-line success">
+                <span class="stream-tag ok">NATIVE EXECUTION</span>
+                <span class="stream-text">Dispatched Win32 keystrokes &bull; Calculated Total: ₹48,920 &bull; Updated Q3_Summary.xlsx &bull; Shadow Rollback checkpoint saved.</span>
+              </div>
+            </div>
+
+            <!-- Right Console: Capabilities & Platform Selector -->
+            <div class="console-sidebar">
+              <div class="platform-mini-header">Device Availability</div>
+
+              <a href="product.html#pc-card" class="platform-mini-item active">
+                <div class="p-icon">💻</div>
+                <div class="p-info">
+                  <div class="p-name">Windows PC <span class="p-badge live">v1.0.0 LIVE</span></div>
+                  <div class="p-desc">Win32 Native &bull; Screen Vision &bull; Voice Lock</div>
+                </div>
+                <div class="p-arrow">→</div>
+              </a>
+
+              <a href="product.html" class="platform-mini-item disabled">
+                <div class="p-icon">📱</div>
+                <div class="p-info">
+                  <div class="p-name">Mobile Phone <span class="p-badge soon">Coming Soon</span></div>
+                  <div class="p-desc">Android & iOS Companion App</div>
+                </div>
+                <div class="p-arrow">⏳</div>
+              </a>
+
+              <a href="product.html" class="platform-mini-item disabled">
+                <div class="p-icon">🍏</div>
+                <div class="p-info">
+                  <div class="p-name">macOS <span class="p-badge soon">Coming Soon</span></div>
+                  <div class="p-desc">Apple Silicon CoreML Architecture</div>
+                </div>
+                <div class="p-arrow">⏳</div>
+              </a>
+
+              <a href="product.html" class="btn btn-solid" style="height:38px; font-size:12.5px; width:100%; justify-content:center; text-decoration:none; margin-top:8px;">
+                View All 3 Device Platforms →
+              </a>
+            </div>
+
+          </div>
+
         </div>
 
       </div>
@@ -1143,7 +1415,7 @@
             Next-generation autonomous operational AI infrastructure and desktop intelligence. Engineered by <strong>Anshu Dubey</strong> in <strong>Barnahal, India</strong>.
           </p>
           <div style="font-size:13px; color:var(--muted);">
-            Flagship Product: <strong>ANSH AI (v2.5.0)</strong>
+            Flagship Product: <strong>ANSH AI (v1.0.0)</strong>
           </div>
         </div>
 
@@ -1185,7 +1457,7 @@
             <li><a href="refund.html">Refund & Cancellation</a></li>
             <li><a href="sitemap.xml" target="_blank">Sitemap.xml (Robots)</a></li>
             <li><a href="sitemap.html">Sitemap.html (HTML)</a></li>
-            <li><a href="mailto:support@getyoursoft.page.gd">Support Contact</a></li>
+            <li><a href="mailto:mastgamerz37@gmail.com">Support Contact</a></li>
           </ul>
         </div>
 
