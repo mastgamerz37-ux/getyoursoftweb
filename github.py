@@ -17,6 +17,7 @@ import os
 import sys
 import json
 import base64
+import hashlib
 import argparse
 import urllib.request
 import urllib.error
@@ -204,6 +205,11 @@ def upload_file_to_github(token: str, owner: str, repo: str, branch: str, base_d
             pass
         except Exception:
             pass
+
+        # If file on GitHub already has the exact same content, skip redundant commit
+        local_git_sha = hashlib.sha1(f"blob {len(content_bytes)}\0".encode("utf-8") + content_bytes).hexdigest()
+        if sha and sha == local_git_sha:
+            return True
 
         payload = {
             "message": f"Sync: {rel_path}",
