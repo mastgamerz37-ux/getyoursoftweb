@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TLGXHGZW');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Pricing & Plans — Vesper.ai / GetYourSoft</title>
+
+  <!-- Force black immediately (Anti-Flash) -->
+  <style>
+    html, body { background: #000000 !important; color: #ffffff; }
+  </style>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Transparent, predictable pricing for Vesper.ai and ANSH AI. Monthly ₹199 or Lifetime ₹999 best value. Zero recurring fees, instant commercial key delivery.">
+  <meta name="keywords" content="Vesper.ai pricing, ANSH AI pricing, buy ANSH AI key, lifetime plan, AI infrastructure India, Anshu Dubey">
+  <meta name="author" content="Anshu Dubey">
+  <link rel="canonical" href="https://getyoursoft.page.gd/pricing.html">
+
+  <!-- Favicon (Exact Vesper Data URI) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cg transform='rotate(-30 12 12)'%3E%3Ccircle cx='7.3' cy='3.2' r='1.45'/%3E%3Crect x='5.5' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Crect x='14.9' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Ccircle cx='16.7' cy='20.8' r='1.45'/%3E%3C/g%3E%3C/svg%3E">
+
+  <!-- Google Fonts: Inter variable + Instrument Serif italic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FR643S6NGM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FR643S6NGM');
+  </script>
+
+  <style>
+    .pricing-hero {
+      text-align: center;
+      padding: 90px 24px 40px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      max-width: 980px;
+      margin: 30px auto 60px;
+      align-items: stretch;
+    }
+
+    .plan-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .plan-card.dominant {
+      border-color: rgba(255, 255, 255, 0.45);
+      background: linear-gradient(180deg, rgba(35, 35, 35, 0.85) 0%, rgba(18, 18, 18, 0.95) 100%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 0 35px rgba(200, 220, 255, 0.12);
+    }
+
+    .plan-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      margin-bottom: 16px;
+      align-self: flex-start;
+    }
+
+    .plan-badge.highlight {
+      background: linear-gradient(90deg, #555555, #222222);
+      border-color: rgba(255, 255, 255, 0.5);
+      color: #ffffff;
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.2);
+    }
+
+    .plan-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin: 14px 0 20px;
+    }
+
+    .price-currency {
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .price-num {
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .price-period {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .savings-pill {
+      display: block;
+      font-size: 12.5px;
+      color: #34d399;
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.25);
+      padding: 6px 12px;
+      border-radius: 6px;
+      margin-bottom: 24px;
+      line-height: 1.4;
+    }
+
+    .plan-features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      flex-grow: 1;
+    }
+
+    .plan-features-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+
+    .plan-features-list li i {
+      margin-top: 3px;
+      font-size: 13px;
+      color: #ffffff;
+    }
+
+    /* Interactive Slider */
+    .roi-calc-card {
+      max-width: 980px;
+      margin: 0 auto 80px;
+    }
+
+    .slider-range {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #262626;
+      outline: none;
+      -webkit-appearance: none;
+      margin: 16px 0 28px;
+    }
+
+    .slider-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #ffffff;
+      cursor: pointer;
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.8), 0 2px 6px rgba(0, 0, 0, 0.5);
+      border: 2px solid #111111;
+      transition: transform 0.15s ease;
+    }
+
+    .slider-range::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    .comparison-table-wrapper {
+      max-width: 980px;
+      margin: 0 auto 80px;
+      overflow-x: auto;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .comparison-table th, .comparison-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .comparison-table th {
+      color: var(--muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 900px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body style="background:#000;color:#fff">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TLGXHGZW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Grain Overlay -->
+  <div class="grain"></div>
+
+  <!-- Main Viewport Page Container -->
+  <div class="page" style="min-height:100vh; display:flex; flex-direction:column;">
+    <div class="menu-backdrop" id="menu-backdrop"></div>
+
+    <!-- Header — 3-Column Grid -->
+    <header class="header">
+      
+      <!-- Left: Logo -->
+      <a href="index.html" class="logo" aria-label="Vesper.ai">
+        <svg class="logo-mark-svg" viewBox="0 0 24 24">
+          <g transform="rotate(-30 12 12)">
+            <circle cx="7.3" cy="3.2" r="1.45"/>
+            <rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+            <rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+            <circle cx="16.7" cy="20.8" r="1.45"/>
+          </g>
+        </svg>
+        <span>Vesper<span class="logo-suffix">.ai</span></span>
+      </a>
+
+      <!-- Center: Liquid-Metal Nav Pills -->
+      <nav id="site-nav" aria-label="Primary">
+        <a href="index.html#benefits" class="nav-pill">Benefits</a>
+        <a href="index.html#how-it-works" class="nav-pill">How It Works</a>
+        <a href="index.html#faqs" class="nav-pill">FAQs</a>
+        <a href="pricing.html" class="nav-pill active">Pricing</a>
+        <a href="docs.html" class="nav-pill">Docs</a>
+      </nav>
+
+      <!-- Right: Header CTA + Burger Button -->
+      <div style="display:flex; align-items:center; gap:10px; justify-self:end;">
+        <a href="signin.html" class="btn btn-solid header-cta">
+          Start for Free
+        </a>
+
+        <button type="button" class="burger-btn" id="burger-btn" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+        </button>
+      </div>
+
+    </header>
+
+    <!-- Main Content Area -->
+    <main style="flex:1; padding-bottom:40px;">
+      
+      <!-- Hero Headline -->
+      <section class="pricing-hero">
+        <div class="badge">
+          <svg class="badge-star" viewBox="0 0 24 24">
+            <path d="M12 2.6C12.55 2.6 12.88 3.15 13.08 4.7c.62 4.7 1.52 5.6 6.22 6.22 1.55.2 2.1.53 2.1 1.08s-.55.88-2.1 1.08c-4.7.62-5.6 1.52-6.22 6.22-.2 1.55-.53 2.1-1.08 2.1s-.88-.55-1.08-2.1c-.62-4.7-1.52-5.6-6.22-6.22C3.15 12.88 2.6 12.55 2.6 12s.55-.88 2.1-1.08c4.7-.62 5.6-1.52 6.22-6.22C11.12 3.15 11.45 2.6 12 2.6Z"/>
+          </svg>
+          <span>Transparent Operational Pricing</span>
+        </div>
+
+        <h1 style="font-size: clamp(32px, 5vw, 54px); margin-bottom: 16px;">
+          Predictable investment for <em>autonomous intelligence</em>.
+        </h1>
+        <p class="lede" style="max-width:620px; margin:0 auto;">
+          Deploy full-featured AI infrastructure across your desktop and operational workflows with zero hidden surcharges or forced compute lock-in.
+        </p>
+      </section>
+
+      <!-- Pricing Plans Grid -->
+      <section class="container">
+        <div class="pricing-grid">
+          
+          <!-- Monthly Plan -->
+          <div class="card plan-card">
+            <div>
+              <span class="plan-badge">Flexible Term</span>
+              <h2 style="font-size:24px; font-weight:600;">Monthly Commercial</h2>
+              <p style="font-size:13.5px; color:var(--muted); margin-top:4px;">For dynamic teams and short-term workflow deployments.</p>
+
+              <div class="plan-price-row">
+                <span class="price-currency">₹</span>
+                <span class="price-num">199</span>
+                <span class="price-period">/ month</span>
+              </div>
+
+              <div style="font-size:12.5px; color:var(--muted); margin-bottom:24px;">
+                Billed monthly via FamPay UPI. Cancel anytime without penalties.
+              </div>
+
+              <ul class="plan-features-list">
+                <li><i class="fa-solid fa-check"></i> Complete access to all 16 AI operational pillars</li>
+                <li><i class="fa-solid fa-check"></i> Zero-dependency whisper voice interface</li>
+                <li><i class="fa-solid fa-check"></i> Vision Screen Peeler & mouse/keyboard automation</li>
+                <li><i class="fa-solid fa-check"></i> Shadow execution sandbox with rollback safety</li>
+                <li><i class="fa-solid fa-check"></i> Biometric Voice Shield speaker verification</li>
+                <li><i class="fa-solid fa-check"></i> Community support & bugfix releases</li>
+              </ul>
+            </div>
+
+            <a href="checkout.html?plan=monthly" class="btn btn-ghost" style="width:100%; height:46px;">
+              Deploy Monthly (₹199/mo)
+            </a>
+          </div>
+
+          <!-- Lifetime Plan (Dominant / Best Value) -->
+          <div class="card plan-card dominant">
+            <div>
+              <span class="plan-badge highlight">🔥 Best Value &bull; One-Time</span>
+              <h2 style="font-size:24px; font-weight:600;">Lifetime Access</h2>
+              <p style="font-size:13.5px; color:var(--muted); margin-top:4px;">Pay once, own forever. The ultimate power user choice.</p>
+
+              <div class="plan-price-row">
+                <span class="price-currency">₹</span>
+                <span class="price-num">999</span>
+                <span class="price-period">one-time</span>
+              </div>
+
+              <div class="savings-pill">
+                🎉 Saves ₹1,389 in the first year alone compared to monthly billing!
+              </div>
+
+              <ul class="plan-features-list">
+                <li><i class="fa-solid fa-check"></i> <strong>Pay once, own forever</strong> — Zero recurring costs</li>
+                <li><i class="fa-solid fa-check"></i> Full feature access across all 16 AI pillars</li>
+                <li><i class="fa-solid fa-check"></i> <strong>All major future version updates (v3.0+) included</strong></li>
+                <li><i class="fa-solid fa-check"></i> Direct priority developer support from <strong>Anshu Dubey</strong></li>
+                <li><i class="fa-solid fa-check"></i> Instant commercial Product Key delivered via Telegram + Gmail</li>
+                <li><i class="fa-solid fa-check"></i> Full offline local execution capability</li>
+              </ul>
+            </div>
+
+            <a href="checkout.html?plan=lifetime" class="btn btn-solid" style="width:100%; height:46px;">
+              Get Lifetime Access (₹999) &rarr;
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Interactive ROI Calculator -->
+      <section class="container">
+        <div class="card roi-calc-card">
+          <div style="text-align:center; max-width:680px; margin:0 auto 28px;">
+            <div class="badge" style="margin-bottom:12px;">Efficiency Engine</div>
+            <h3 style="font-size:26px;">Interactive Time & Cost Savings <em>Calculator</em></h3>
+            <p style="color:var(--muted); font-size:14px; margin-top:6px;">
+              Calculate how many hours and rupees your operations recover each month by automating repetitive workflows with ANSH AI.
+            </p>
+          </div>
+
+          <div style="max-width:640px; margin:0 auto 28px;">
+            <div style="display:flex; justify-content:space-between; font-size:14px; color:#ffffff; font-weight:500;">
+              <span>Repetitive operational hours per week:</span>
+              <strong id="calc-hours-val" style="color:#ffffff; font-family:var(--font-mono); font-size:15px;">10 hrs/week</strong>
+            </div>
+            <input type="range" id="calc-hours-slider" class="slider-range" min="2" max="40" value="10">
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; text-align:center; padding-top:24px; border-top:1px solid var(--border-soft);">
+            <div>
+              <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em;">Monthly Time Saved</div>
+              <div style="font-size:32px; font-weight:700; color:#34d399; margin-top:4px;" id="calc-time-saved">24 Hours</div>
+            </div>
+            <div>
+              <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em;">Estimated Monthly Value</div>
+              <div style="font-size:32px; font-weight:700; color:#ffffff; margin-top:4px;" id="calc-value-saved">₹7,200</div>
+            </div>
+            <div>
+              <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em;">Lifetime Break-Even</div>
+              <div style="font-size:32px; font-weight:700; color:#e5e5e5; margin-top:4px;">Under 5 Days</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Feature Comparison Matrix -->
+      <section class="container">
+        <div class="card comparison-table-wrapper">
+          <div style="padding:10px 0 20px;">
+            <h3 style="font-size:20px; font-weight:600;">Plan Feature Matrix</h3>
+          </div>
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Capability / Feature</th>
+                <th>Monthly (₹199/mo)</th>
+                <th>Lifetime (₹999 one-time)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Voice Command Latency</td>
+                <td>&lt; 350ms (Zero-dependency)</td>
+                <td>&lt; 350ms (Zero-dependency)</td>
+              </tr>
+              <tr>
+                <td>Screen Peeler Vision AI</td>
+                <td>Full Access (60fps)</td>
+                <td>Full Access (60fps)</td>
+              </tr>
+              <tr>
+                <td>Shadow Rollback Sandbox</td>
+                <td>Included</td>
+                <td>Included</td>
+              </tr>
+              <tr>
+                <td>Biometric Voice Shield</td>
+                <td>Included</td>
+                <td>Included</td>
+              </tr>
+              <tr>
+                <td>Upcoming Major Upgrades (v3.0+)</td>
+                <td>Active subscription required</td>
+                <td><strong>Lifetime included free</strong></td>
+              </tr>
+              <tr>
+                <td>Direct Developer Access</td>
+                <td>Standard Email</td>
+                <td><strong>Priority Telegram & WhatsApp</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Complex Site Footer -->
+    <footer class="site-footer-complex">
+      <div class="footer-top-grid">
+        
+        <!-- Brand / Identity -->
+        <div class="footer-brand-col">
+          <h4>
+            <svg class="logo-mark-svg" viewBox="0 0 24 24" style="width:20px; height:20px;">
+              <g transform="rotate(-30 12 12)">
+                <circle cx="7.3" cy="3.2" r="1.45"/>
+                <rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+                <rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+                <circle cx="16.7" cy="20.8" r="1.45"/>
+              </g>
+            </svg>
+            Vesper.ai / GetYourSoft
+          </h4>
+          <p class="footer-brand-desc">
+            Next-generation autonomous operational AI infrastructure and desktop intelligence. Engineered by <strong>Anshu Dubey</strong> in <strong>Barnahal, India</strong>.
+          </p>
+          <div style="font-size:13px; color:var(--muted);">
+            Flagship Product: <strong>ANSH AI (v2.5.0)</strong>
+          </div>
+        </div>
+
+        <!-- Col 1: Platform -->
+        <div class="footer-links-col">
+          <h5>Platform</h5>
+          <ul class="footer-nav-list">
+            <li><a href="pricing.html">Pricing & Plans</a></li>
+            <li><a href="checkout.html">FamPay UPI Checkout</a></li>
+            <li><a href="signin.html">Dashboard & Auth</a></li>
+            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="admin.html">Admin Console</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Architecture -->
+        <div class="footer-links-col">
+          <h5>Architecture</h5>
+          <ul class="footer-nav-list">
+            <li><a href="docs.html#quickstart">Zero-Dep Voice Engine</a></li>
+            <li><a href="docs.html#control">Screen Peeler Vision</a></li>
+            <li><a href="docs.html#safety">Shadow Rollback Engine</a></li>
+            <li><a href="docs.html#enrollment">Biometric Voice Shield</a></li>
+            <li><a href="docs.html#troubleshooting">Troubleshooting FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Legal & Trust -->
+        <div class="footer-links-col">
+          <h5>Legal & Security</h5>
+          <ul class="footer-nav-list">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions (EULA)</a></li>
+            <li><a href="refund.html">Refund & Cancellation</a></li>
+            <li><a href="https://github.com/anshu-dubey/ansh-ai" target="_blank">GitHub Repository</a></li>
+            <li><a href="mailto:support@getyoursoft.page.gd">Support Contact</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          © 2026 Vesper.ai &bull; GetYourSoft. All rights reserved. Architected by <strong>Anshu Dubey</strong>.
+        </div>
+        <div>
+          Domain: <code>getyoursoft.page.gd</code> &bull; Built in Barnahal, India.
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Shared Minimal JS (IIFE) -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Mobile Menu Burger
+      var burgerBtn = document.getElementById('burger-btn');
+      var backdrop = document.getElementById('menu-backdrop');
+      var body = document.body;
+
+      function toggleMenu() {
+        var isOpen = body.classList.toggle('menu-open');
+        if (burgerBtn) {
+          burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          burgerBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        }
+      }
+
+      function closeMenu() {
+        if (body.classList.contains('menu-open')) {
+          body.classList.remove('menu-open');
+          if (burgerBtn) {
+            burgerBtn.setAttribute('aria-expanded', 'false');
+            burgerBtn.setAttribute('aria-label', 'Open menu');
+          }
+        }
+      }
+
+      if (burgerBtn) burgerBtn.addEventListener('click', toggleMenu);
+      if (backdrop) backdrop.addEventListener('click', closeMenu);
+
+      var navLinks = document.querySelectorAll('#site-nav a');
+      navLinks.forEach(function (link) { link.addEventListener('click', closeMenu); });
+
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' || e.keyCode === 27) closeMenu();
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 901) closeMenu();
+      });
+
+      // 2. Interactive ROI Slider
+      var slider = document.getElementById('calc-hours-slider');
+      var hoursVal = document.getElementById('calc-hours-val');
+      var timeSaved = document.getElementById('calc-time-saved');
+      var valSaved = document.getElementById('calc-value-saved');
+
+      if (slider) {
+        slider.addEventListener('input', function () {
+          var h = parseInt(this.value, 10);
+          hoursVal.textContent = h + ' hrs/week';
+          var savedMonthly = Math.round(h * 4 * 0.6);
+          timeSaved.textContent = savedMonthly + ' Hours';
+          valSaved.textContent = '₹' + (savedMonthly * 300).toLocaleString('en-IN');
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
