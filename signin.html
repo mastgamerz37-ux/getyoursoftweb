@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TLGXHGZW');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sign In & Operator Dashboard — Vesper.ai / GetYourSoft</title>
+
+  <!-- Force black immediately (Anti-Flash) -->
+  <style>
+    html, body { background: #000000 !important; color: #ffffff; }
+  </style>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Sign in or register for Vesper.ai and ANSH AI. Manage commercial product keys, active licenses, and download the latest Windows desktop release.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://getyoursoft.page.gd/signin.html">
+
+  <!-- Favicon (Exact Vesper Data URI) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cg transform='rotate(-30 12 12)'%3E%3Ccircle cx='7.3' cy='3.2' r='1.45'/%3E%3Crect x='5.5' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Crect x='14.9' y='4.7' width='3.6' height='14.6' rx='1.8'/%3E%3Ccircle cx='16.7' cy='20.8' r='1.45'/%3E%3C/g%3E%3C/svg%3E">
+
+  <!-- Google Fonts: Inter variable + Instrument Serif italic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FR643S6NGM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FR643S6NGM');
+  </script>
+
+  <!-- Firebase Compat SDKs from Google CDN -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    .auth-page-wrapper {
+      min-height: calc(100vh - 200px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px 80px;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .auth-tab-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: rgba(12, 12, 12, 0.8);
+      border-radius: var(--radius-pill);
+      padding: 4px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border-soft);
+    }
+
+    .auth-tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 13.5px;
+      font-weight: 500;
+      padding: 8px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .auth-tab-btn.active {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+    }
+
+    .oauth-btn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .oauth-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(18, 18, 18, 0.8);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .oauth-btn:hover {
+      background: rgba(28, 28, 28, 0.95);
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .divider-or {
+      display: flex;
+      align-items: center;
+      margin: 18px 0 22px;
+      color: var(--muted);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .divider-or::before, .divider-or::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-soft);
+    }
+
+    .divider-or span {
+      padding: 0 12px;
+    }
+
+    .password-input-wrap {
+      position: relative;
+    }
+
+    .toggle-password-btn {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    /* Dashboard Styles */
+    .dash-profile-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 22px;
+    }
+
+    .dash-avatar-img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      object-fit: cover;
+    }
+
+    .license-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge-active {
+      background: rgba(52, 211, 153, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(52, 211, 153, 0.35);
+    }
+
+    .badge-trial {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .auth-status {
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      background: rgba(248, 113, 113, 0.1);
+      border: 1px solid rgba(248, 113, 113, 0.3);
+      color: #f87171;
+    }
+
+    .celebration-key-box {
+      background: #090909;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .key-title {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .key-value {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+<body style="background:#000;color:#fff">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TLGXHGZW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Grain Overlay -->
+  <div class="grain"></div>
+
+  <!-- Main Viewport Page Container -->
+  <div class="page" style="min-height:100vh; display:flex; flex-direction:column;">
+    <div class="menu-backdrop" id="menu-backdrop"></div>
+
+    <!-- Header — 3-Column Grid -->
+    <header class="header">
+      
+      <!-- Left: Logo -->
+      <a href="index.html" class="logo" aria-label="Vesper.ai">
+        <svg class="logo-mark-svg" viewBox="0 0 24 24">
+          <g transform="rotate(-30 12 12)">
+            <circle cx="7.3" cy="3.2" r="1.45"/>
+            <rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+            <rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+            <circle cx="16.7" cy="20.8" r="1.45"/>
+          </g>
+        </svg>
+        <span>Vesper<span class="logo-suffix">.ai</span></span>
+      </a>
+
+      <!-- Center: Liquid-Metal Nav Pills -->
+      <nav id="site-nav" aria-label="Primary">
+        <a href="index.html#benefits" class="nav-pill">Benefits</a>
+        <a href="index.html#how-it-works" class="nav-pill">How It Works</a>
+        <a href="pricing.html" class="nav-pill">Pricing</a>
+        <a href="docs.html" class="nav-pill">Docs</a>
+        <a href="signin.html" class="nav-pill active">Account</a>
+      </nav>
+
+      <!-- Right: Header CTA + Burger Button -->
+      <div style="display:flex; align-items:center; gap:10px; justify-self:end;">
+        <a href="pricing.html" class="btn btn-ghost header-cta">
+          Get Started
+        </a>
+
+        <button type="button" class="burger-btn" id="burger-btn" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+        </button>
+      </div>
+
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="auth-page-wrapper">
+      
+      <!-- STATE 1: UNLOGGED (Sign In ⟷ Sign Up) -->
+      <div class="card auth-card" id="auth-unlogged-container">
+        
+        <div style="text-align:center; margin-bottom:22px;">
+          <div class="badge" style="margin-bottom:12px;">Identity Vault</div>
+          <h1 style="font-size:24px; font-weight:600;">Access <em>Operator Console</em></h1>
+          <p style="color:var(--muted); font-size:13.5px; margin-top:4px;">Sign in to view registered licenses, devices, and installers</p>
+        </div>
+
+        <!-- Tab Switcher -->
+        <div class="auth-tab-switch">
+          <button class="auth-tab-btn active" id="tab-signin">Sign In</button>
+          <button class="auth-tab-btn" id="tab-signup">Create Account</button>
+        </div>
+
+        <!-- OAuth Providers (Google, GitHub, Microsoft, Apple) -->
+        <div class="oauth-btn-grid">
+          <button type="button" class="oauth-btn" id="oauth-google-btn">
+            <i class="fa-brands fa-google"></i> Google
+          </button>
+          <button type="button" class="oauth-btn" id="oauth-github-btn">
+            <i class="fa-brands fa-github"></i> GitHub
+          </button>
+          <button type="button" class="oauth-btn" id="oauth-microsoft-btn">
+            <i class="fa-brands fa-microsoft"></i> Microsoft
+          </button>
+          <button type="button" class="oauth-btn" id="oauth-apple-btn">
+            <i class="fa-brands fa-apple"></i> Apple
+          </button>
+        </div>
+
+        <div class="divider-or"><span>or with credentials</span></div>
+
+        <!-- Notification Status -->
+        <div class="auth-status" id="auth-status-msg" style="display:none; margin-bottom:16px;"></div>
+
+        <!-- Email / Password Form -->
+        <form id="auth-form">
+          <div class="form-group">
+            <label class="form-label" for="auth-email">Email Address</label>
+            <input type="email" id="auth-email" class="form-input" placeholder="operator@domain.com" required autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="auth-password">Password</label>
+            <div class="password-input-wrap">
+              <input type="password" id="auth-password" class="form-input" placeholder="••••••••" required autocomplete="current-password">
+              <button type="button" class="toggle-password-btn" id="toggle-password-btn" aria-label="Toggle password visibility">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group" id="auth-confirm-group" style="display:none;">
+            <label class="form-label" for="auth-confirm-password">Confirm Password</label>
+            <input type="password" id="auth-confirm-password" class="form-input" placeholder="••••••••" autocomplete="new-password">
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; margin-bottom:20px;">
+            <button type="button" id="forgot-password-btn" style="background:none; border:none; color:var(--muted); font-size:12.5px; cursor:pointer; text-decoration:underline;">
+              Forgot password?
+            </button>
+          </div>
+
+          <button type="submit" class="btn btn-solid" id="auth-submit-btn" style="width:100%; height:46px; font-size:14px;">
+            Sign In to Console
+          </button>
+        </form>
+
+      </div>
+
+      <!-- STATE 2: LOGGED IN (User Dashboard) -->
+      <div class="card auth-card" id="auth-logged-container" style="display:none; max-width:560px;">
+        
+        <div class="dash-profile-header">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=128&auto=format&fit=crop&q=80" alt="Avatar" class="dash-avatar-img" id="dash-user-avatar">
+          <div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <h2 style="font-size:20px; font-weight:600;" id="dash-user-name">Vesper Operator</h2>
+              <span class="license-badge badge-active" id="dash-user-role">Operator</span>
+            </div>
+            <p style="color:var(--muted); font-size:13.5px; margin-top:2px;" id="dash-user-email">operator@vesper.ai</p>
+          </div>
+        </div>
+
+        <!-- Subscription & License -->
+        <div style="margin-bottom:24px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span style="font-size:13.5px; color:var(--muted);">Subscription Plan:</span>
+            <span class="license-badge badge-trial" id="dash-license-badge">Lifetime License</span>
+          </div>
+
+          <div class="celebration-key-box">
+            <div class="key-title">Active Commercial Product Key</div>
+            <div class="key-value" id="dash-license-key">ANSH-XXXX-XXXX-XXXX</div>
+            <button type="button" class="btn btn-ghost" id="dash-copy-key-btn" style="margin-top:12px; height:34px; font-size:12.5px;">
+              <i class="fa-regular fa-copy" style="margin-right:6px;"></i> Copy Key
+            </button>
+          </div>
+        </div>
+
+        <!-- Downloads & Documentation Links -->
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a href="https://github.com/anshu-dubey/ansh-ai/releases/latest/download/AnshAI-Setup-v2.5.0.exe" class="btn btn-solid" style="height:44px; font-size:13.5px; text-decoration:none;">
+            <i class="fa-brands fa-windows" style="margin-right:8px;"></i> Download Windows Desktop Setup (v2.5.0)
+          </a>
+          <a href="checkout.html?plan=lifetime" class="btn btn-ghost" style="height:40px; font-size:13px;">
+            <i class="fa-solid fa-bolt" style="margin-right:8px;"></i> Upgrade / Extend License
+          </a>
+          <a href="docs.html" class="btn btn-ghost" style="height:40px; font-size:13px;">
+            <i class="fa-solid fa-book" style="margin-right:8px;"></i> View Operational Documentation
+          </a>
+        </div>
+
+        <!-- Account Settings & Sign Out -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:26px; padding-top:18px; border-top:1px solid var(--border-soft);">
+          <button type="button" id="dash-signout-btn" class="btn btn-ghost" style="height:34px; font-size:12.5px;">
+            <i class="fa-solid fa-arrow-right-from-bracket" style="margin-right:6px;"></i> Sign Out
+          </button>
+          <button type="button" id="dash-delete-account-btn" style="background:none; border:none; color:#f87171; font-size:12.5px; cursor:pointer; text-decoration:underline;">
+            Delete Account
+          </button>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Complex Site Footer -->
+    <footer class="site-footer-complex">
+      <div class="footer-top-grid">
+        
+        <!-- Brand / Identity -->
+        <div class="footer-brand-col">
+          <h4>
+            <svg class="logo-mark-svg" viewBox="0 0 24 24" style="width:20px; height:20px;">
+              <g transform="rotate(-30 12 12)">
+                <circle cx="7.3" cy="3.2" r="1.45"/>
+                <rect x="5.5" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+                <rect x="14.9" y="4.7" width="3.6" height="14.6" rx="1.8"/>
+                <circle cx="16.7" cy="20.8" r="1.45"/>
+              </g>
+            </svg>
+            Vesper.ai / GetYourSoft
+          </h4>
+          <p class="footer-brand-desc">
+            Next-generation autonomous operational AI infrastructure and desktop intelligence. Engineered by <strong>Anshu Dubey</strong> in <strong>Barnahal, India</strong>.
+          </p>
+          <div style="font-size:13px; color:var(--muted);">
+            Flagship Product: <strong>ANSH AI (v2.5.0)</strong>
+          </div>
+        </div>
+
+        <!-- Col 1: Platform -->
+        <div class="footer-links-col">
+          <h5>Platform</h5>
+          <ul class="footer-nav-list">
+            <li><a href="pricing.html">Pricing & Plans</a></li>
+            <li><a href="checkout.html">FamPay UPI Checkout</a></li>
+            <li><a href="signin.html">Dashboard & Auth</a></li>
+            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="admin.html">Admin Console</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Architecture -->
+        <div class="footer-links-col">
+          <h5>Architecture</h5>
+          <ul class="footer-nav-list">
+            <li><a href="docs.html#quickstart">Zero-Dep Voice Engine</a></li>
+            <li><a href="docs.html#control">Screen Peeler Vision</a></li>
+            <li><a href="docs.html#safety">Shadow Rollback Engine</a></li>
+            <li><a href="docs.html#enrollment">Biometric Voice Shield</a></li>
+            <li><a href="docs.html#troubleshooting">Troubleshooting FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Legal & Trust -->
+        <div class="footer-links-col">
+          <h5>Legal & Security</h5>
+          <ul class="footer-nav-list">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions (EULA)</a></li>
+            <li><a href="refund.html">Refund & Cancellation</a></li>
+            <li><a href="https://github.com/anshu-dubey/ansh-ai" target="_blank">GitHub Repository</a></li>
+            <li><a href="mailto:support@getyoursoft.page.gd">Support Contact</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>
+          © 2026 Vesper.ai &bull; GetYourSoft. All rights reserved. Architected by <strong>Anshu Dubey</strong>.
+        </div>
+        <div>
+          Domain: <code>getyoursoft.page.gd</code> &bull; Built in Barnahal, India.
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var burgerBtn = document.getElementById('burger-btn');
+      var backdrop = document.getElementById('menu-backdrop');
+      var body = document.body;
+
+      function toggleMenu() {
+        var isOpen = body.classList.toggle('menu-open');
+        if (burgerBtn) {
+          burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          burgerBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        }
+      }
+
+      function closeMenu() {
+        if (body.classList.contains('menu-open')) {
+          body.classList.remove('menu-open');
+          if (burgerBtn) {
+            burgerBtn.setAttribute('aria-expanded', 'false');
+            burgerBtn.setAttribute('aria-label', 'Open menu');
+          }
+        }
+      }
+
+      if (burgerBtn) burgerBtn.addEventListener('click', toggleMenu);
+      if (backdrop) backdrop.addEventListener('click', closeMenu);
+
+      var navLinks = document.querySelectorAll('#site-nav a');
+      navLinks.forEach(function (link) { link.addEventListener('click', closeMenu); });
+
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' || e.keyCode === 27) closeMenu();
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 901) closeMenu();
+      });
+    })();
+  </script>
+
+</body>
+</html>
