@@ -1,11 +1,11 @@
 """
-github.py — Pure Python GitHub Repository Creator & Uploader for GetYourSoft / Vesper.ai
+github.py — Pure Python GitHub Repository Creator & Uploader for GetYourSoft / Ansh Ai - Your Own Ai Friend
 Created & Developed by Anshu Dubey
 
 Features:
 - Pure Python using GitHub REST API v3 (No Git CLI or installation required).
 - Automatically detects your GitHub username from your Personal Access Token (PAT).
-- Prompts for or accepts custom repository name (e.g. ansh-website, vesper-ai, or ansh-ai).
+- Prompts for or accepts custom repository name (e.g. ansh-website, ansh-ai, or ansh-ai).
 - Automatically creates the repository on GitHub if it doesn't already exist.
 - Detects the default branch (main/master) automatically.
 - Safely excludes sensitive environment files (.env) while uploading .env.example.
@@ -102,7 +102,7 @@ def get_authenticated_user(token: str) -> str | None:
         headers={
             "Authorization": f"token {token}",
             "Accept": "application/vnd.github.v3+json",
-            "User-Agent": "Vesper-Uploader"
+            "User-Agent": "ANSH AI-Uploader"
         }
     )
     try:
@@ -125,7 +125,7 @@ def ensure_repo_exists(token: str, owner: str, repo: str, is_private: bool = Fal
         headers={
             "Authorization": f"token {token}",
             "Accept": "application/vnd.github.v3+json",
-            "User-Agent": "Vesper-Uploader"
+            "User-Agent": "ANSH AI-Uploader"
         }
     )
     try:
@@ -141,7 +141,7 @@ def ensure_repo_exists(token: str, owner: str, repo: str, is_private: bool = Fal
             create_url = "https://api.github.com/user/repos"
             payload = {
                 "name": repo,
-                "description": "Vesper.ai / GetYourSoft — Operational AI Infrastructure & Desktop Intelligence Website",
+                "description": "Ansh Ai - Your Own Ai Friend / GetYourSoft — Operational AI Infrastructure & Desktop Intelligence Website",
                 "private": is_private,
                 "auto_init": True
             }
@@ -152,7 +152,7 @@ def ensure_repo_exists(token: str, owner: str, repo: str, is_private: bool = Fal
                     "Authorization": f"token {token}",
                     "Accept": "application/vnd.github.v3+json",
                     "Content-Type": "application/json",
-                    "User-Agent": "Vesper-Uploader"
+                    "User-Agent": "ANSH AI-Uploader"
                 },
                 method="POST"
             )
@@ -194,7 +194,7 @@ def upload_file_to_github(token: str, owner: str, repo: str, branch: str, base_d
             headers={
                 "Authorization": f"token {token}",
                 "Accept": "application/vnd.github.v3+json",
-                "User-Agent": "Vesper-Uploader"
+                "User-Agent": "ANSH AI-Uploader"
             }
         )
         try:
@@ -226,7 +226,7 @@ def upload_file_to_github(token: str, owner: str, repo: str, branch: str, base_d
                 "Authorization": f"token {token}",
                 "Accept": "application/vnd.github.v3+json",
                 "Content-Type": "application/json",
-                "User-Agent": "Vesper-Uploader"
+                "User-Agent": "ANSH AI-Uploader"
             },
             method="PUT"
         )
@@ -255,14 +255,14 @@ def upload_file_to_github(token: str, owner: str, repo: str, branch: str, base_d
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Upload Vesper.ai / ANSH Website to GitHub")
+    parser = argparse.ArgumentParser(description="Upload Ansh Ai - Your Own Ai Friend / ANSH Website to GitHub")
     parser.add_argument("--token", help="GitHub Personal Access Token")
     parser.add_argument("--repo", help="GitHub Repository Name (default: ansh-website)")
     parser.add_argument("--private", action="store_true", help="Make new repository private")
     args = parser.parse_args()
 
     print("=================================================================")
-    print("  Vesper.ai / ANSH AI — GitHub Repository Synchronizer           ")
+    print("  Ansh Ai - Your Own Ai Friend / ANSH AI — GitHub Repository Synchronizer           ")
     print("  Developer: Anshu Dubey | Barnahal, India                       ")
     print("=================================================================\n")
 
