@@ -22,6 +22,14 @@ import urllib.request
 import urllib.error
 from pathlib import Path
 
+# Fix Windows console UTF-8 emoji encoding
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 # Files and directories to strictly ignore to protect secrets and avoid bloat
 IGNORED_DIR_NAMES = {
     "venv", ".venv", "env", "ENV", "build", "dist", "__pycache__",
@@ -177,57 +185,66 @@ def upload_file_to_github(token: str, owner: str, repo: str, branch: str, base_d
         print(f"❌ Failed to read {rel_path}: {e}")
         return False
 
-    # Check if file exists to fetch sha for update
-    sha = None
-    req_check = urllib.request.Request(
-        f"{url}?ref={branch}",
-        headers={
-            "Authorization": f"token {token}",
-            "Accept": "application/vnd.github.v3+json",
-            "User-Agent": "Vesper-Uploader"
-        }
-    )
-    try:
-        with urllib.request.urlopen(req_check) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            sha = data.get("sha")
-    except urllib.error.HTTPError:
-        pass
-
-    payload = {
-        "message": f"Sync: {rel_path}",
-        "content": encoded_content,
-        "branch": branch
-    }
-    if sha:
-        payload["sha"] = sha
-
-    req_upload = urllib.request.Request(
-        url,
-        data=json.dumps(payload).encode("utf-8"),
-        headers={
-            "Authorization": f"token {token}",
-            "Accept": "application/vnd.github.v3+json",
-            "Content-Type": "application/json",
-            "User-Agent": "Vesper-Uploader"
-        },
-        method="PUT"
-    )
-
-    try:
-        with urllib.request.urlopen(req_upload) as resp:
-            if resp.status in (200, 201):
-                return True
-    except urllib.error.HTTPError as he:
+    for attempt in range(1, 4):
+        # Check if file exists to fetch sha for update
+        sha = None
+        req_check = urllib.request.Request(
+            f"{url}?ref={branch}",
+            headers={
+                "Authorization": f"token {token}",
+                "Accept": "application/vnd.github.v3+json",
+                "User-Agent": "Vesper-Uploader"
+            }
+        )
         try:
-            err_body = he.read().decode("utf-8")
-            err_json = json.loads(err_body)
-            msg = err_json.get("message", he.reason)
+            with urllib.request.urlopen(req_check, timeout=30) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+                sha = data.get("sha")
+        except urllib.error.HTTPError:
+            pass
         except Exception:
-            msg = he.reason
-        print(f"\n   ❌ Error ({rel_path}): HTTP {he.code} — {msg}", end="")
-    except Exception as ex:
-        print(f"\n   ❌ Error ({rel_path}): {ex}", end="")
+            pass
+
+        payload = {
+            "message": f"Sync: {rel_path}",
+            "content": encoded_content,
+            "branch": branch
+        }
+        if sha:
+            payload["sha"] = sha
+
+        req_upload = urllib.request.Request(
+            url,
+            data=json.dumps(payload).encode("utf-8"),
+            headers={
+                "Authorization": f"token {token}",
+                "Accept": "application/vnd.github.v3+json",
+                "Content-Type": "application/json",
+                "User-Agent": "Vesper-Uploader"
+            },
+            method="PUT"
+        )
+
+        try:
+            with urllib.request.urlopen(req_upload, timeout=40) as resp:
+                if resp.status in (200, 201):
+                    return True
+        except urllib.error.HTTPError as he:
+            try:
+                err_body = he.read().decode("utf-8")
+                err_json = json.loads(err_body)
+                msg = err_json.get("message", he.reason)
+            except Exception:
+                msg = he.reason
+            print(f"\n   ❌ Error ({rel_path}): HTTP {he.code} — {msg}", end="")
+            return False
+        except Exception as ex:
+            if attempt < 3:
+                import time
+                time.sleep(2)
+                continue
+            print(f"\n   ❌ Error ({rel_path}): {ex}", end="")
+            return False
     return False
 
 
