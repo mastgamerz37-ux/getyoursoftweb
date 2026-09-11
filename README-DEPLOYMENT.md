@@ -67,7 +67,7 @@ Go to **Vercel Dashboard → Your Project → Settings → Environment Variables
 | `RESEND_API_KEY` | `your_resend_api_key` | Configured Live Resend Key |
 | `RESEND_FROM_EMAIL` | `ANSH AI <onboarding@resend.dev>` | Verified sender email on Resend |
 | `ADMIN_PASSKEY` | `ansh2026` | Admin passkey to unlock `/admin.html` |
-| `DOWNLOAD_URL` | `https://github.com/anshu-dubey/ansh-ai/releases/latest/download/AnshAI-Setup-v2.5.0.exe` | Direct Windows installer download |
+| `DOWNLOAD_URL` | `https://github.com/anshu-dubey/ansh-ai/releases/latest/download/AnshAI-Setup-v1.0.0.exe` | Direct Windows installer download |
 
 ### Step 3: Register the Telegram Bot Webhook
 Once you deploy to Vercel, open your browser and run this one-time URL (replace `<YOUR_BOT_TOKEN>` with your bot token and `<YOUR_VERCEL_DOMAIN>` with your actual Vercel URL, e.g. `ansh-ai-backend.vercel.app`):
