@@ -15,7 +15,7 @@ const ANSH_CONFIG = {
   SITE_NAME: 'GetYourSoft — ANSH AI',
   DEVELOPER_NAME: 'Anshu Dubey',
   DEVELOPER_LOCATION: 'Barnahal, India',
-  CONTACT_EMAIL: 'support@getyoursoft.page.gd',
+  CONTACT_EMAIL: 'mastgamerz37@gmail.com',
 
   // 3. Payment & FamPay Details
   PAYMENT: {
@@ -46,8 +46,8 @@ const ANSH_CONFIG = {
 
   // 6. Application Download
   DOWNLOADS: {
-    WINDOWS_INSTALLER: 'https://github.com/anshu-dubey/ansh-ai/releases/latest/download/AnshAI-Setup-v2.5.0.exe',
-    VERSION: 'v2.5.0',
+    WINDOWS_INSTALLER: 'https://github.com/anshu-dubey/ansh-ai/releases/latest/download/AnshAI-Setup-v1.0.0.exe',
+    VERSION: 'v1.0.0',
     RELEASE_DATE: 'September 2026',
     FILE_SIZE: '142 MB',
     MIN_WINDOWS: 'Windows 10 / 11 (64-bit)'
