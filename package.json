@@ -1,6 +1,6 @@
 {
   "name": "ansh-ai-backend",
-  "version": "2.5.0",
+  "version": "1.0.0",
   "description": "Serverless backend for GetYourSoft / ANSH AI — Telegram Approval Webhook & Resend Transactional Email",
   "type": "commonjs",
   "scripts": {
