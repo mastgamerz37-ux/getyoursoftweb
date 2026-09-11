@@ -1,5 +1,5 @@
 /* ==============================================================================
-   Vesper.ai / GetYourSoft — Master Design System (styles.css)
+   Ansh Ai - Your Own Ai Friend / GetYourSoft — Master Design System (styles.css)
    Pure Black Stealth Luxury • Liquid-Metal Architecture • 60fps Micro-Motion
    ============================================================================== */
 
@@ -156,6 +156,15 @@ button {
   font-weight: 400;
   opacity: 0.85;
   color: var(--muted);
+  font-size: 0.82em;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+@media (max-width: 992px) {
+  .logo-suffix {
+    display: none;
+  }
 }
 
 /* Nav Center — Liquid-Metal Pills */
